@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 
-export default class ManSection extends Component {
+export default class CategorySection extends Component {
     constructor(props){
         super(props);
-        console.log("man section",props.prestations);
+        console.log("haircut section",this.props.prestations);
     }
     render() {
         
         return (
             <div>
-                Man section
+                <h3></h3>
             </div>
         )
     }

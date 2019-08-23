@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ManSection from "./ManSection";
-import WomanSection from "./WomanSection";
-import ChildrenSection from "./ChildrenSection";
+import CategorySection from "./CategorySection";
 
 import {connect} from "react-redux";
 
@@ -18,18 +16,36 @@ class PrestationList extends Component {
         this.props.fetchPrestations();
     }
 
+    getPrestation(category){
+        console.log("test category",category);
+        let prestationsByCategory = {};
+        this.props.prestations.categories.map((element)=>{
+            console.log('element',element);
+            if (element.reference === category){
+                prestationsByCategory = element;
+                console.log('element',element);
+                return element;
+            }
+        })
+        return prestationsByCategory;
+    }
 
     render() {
         console.log('prestations',this.props.prestations);
         console.log('pending',this.props.pending);
         return (
             <div>
-                {this.props.pending ? <div>Loading...</div>
+                {(this.props.pending || this.props.prestations.length === 0) ? <div>Loading...</div>
                 : 
                 <div>
                     <h1>Réservations</h1>
-                    <h2>Coiffure à domicile</h2>
-                    <ManSection prestations={this.props.prestations}/>
+                    <h2>{this.props.prestations.title} à domicile</h2>
+                    <hr/>
+                    <CategorySection prestations={this.getPrestation("man")}/>
+                    <hr/>
+                    <CategorySection prestations={this.getPrestation("woman")}/>
+                    <hr/>
+                    <CategorySection prestations={this.getPrestation("child")}/>
                 </div>
                 }
             </div>

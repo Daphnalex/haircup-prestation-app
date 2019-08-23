@@ -46,6 +46,12 @@ h2 {
   margin-top: 10px;
 }
 
+h3{
+  text-align: left;
+  font-family: Open-Sans;
+  font-size: 26px;
+}
+
 /*--------- LINES ------------*/
 hr {
   border: 1px solid #f1f0f1;
