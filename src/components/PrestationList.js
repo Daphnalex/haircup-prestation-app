@@ -41,13 +41,16 @@ class PrestationList extends Component {
                     <h1>Réservations</h1>
                     <h2>{this.props.prestations.title} à domicile</h2>
                     <hr/>
-                    <CategorySection prestations={this.getPrestation("man")}/>
+                    <CategorySection prestations={this.getPrestation("man")} />
                     <hr/>
                     <CategorySection prestations={this.getPrestation("woman")}/>
                     <hr/>
                     <CategorySection prestations={this.getPrestation("child")}/>
                 </div>
                 }
+                <div className="shop">
+                    <h1>Panier</h1>
+                </div>
             </div>
         )
         

@@ -1,10 +1,11 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: Open-Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 code {
@@ -32,14 +33,12 @@ nav img{
 /*------- TITLE -------*/
 
 h1 {
-  font-family: Open-Sans;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 0px;
 }
 
 h2 {
-  font-family: Open-Sans;
   text-transform: uppercase;
   text-align: center;
   color: #f96723;
@@ -48,11 +47,37 @@ h2 {
 
 h3{
   text-align: left;
-  font-family: Open-Sans;
   font-size: 26px;
+  text-transform: uppercase;
+}
+
+h4{
+  text-align: center;
+  font-size: 26px;
+  color: #f96723;
+  margin-bottom: 30px;
+}
+
+.bold{
+  font-weight: bold;
 }
 
 /*--------- LINES ------------*/
 hr {
   border: 1px solid #f1f0f1;
+}
+
+/*-------- Prestations Liste ----------*/
+div.thumbnail{
+  position:relative;
+  height: 260px;
+}
+p.reservationButton{
+  position: absolute;
+  bottom: 0;
+  display: block;
+  padding-left: 30%;
+}
+p.reservationButton button{
+  font-size: 16px;
 }
