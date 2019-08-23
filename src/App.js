@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { connect } from "react-redux";
+
+import Header from './components/Header';
+import PrestationList from './components/PrestationList';
+
+import logo from './logo_wecasa.png';
+
+
+class App extends Component {
+
+  constructor(props){
+    super(props);
+  }
+
+  componentWillMount(){
+    /* get all haircut prestations */
+    
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <Header logosrc={logo}/>
+        <div className="container">
+          <PrestationList/>
+        </div>
+      </div>
+    );
+  };
+};
+
 
 export default App;

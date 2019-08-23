@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.container {
+  padding: 2.5em;
+}
+
+/*------- HEADER -------*/
+
+nav {
+  background-color: #f96723;
+  height: 56px;
+  padding-left: 10%;
+}
+
+nav img{
+  float: left;
+  padding-top:12px ;
+}
+
+/*------- TITLE -------*/
+
+h1 {
+  font-family: Open-Sans;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+h2 {
+  font-family: Open-Sans;
+  text-transform: uppercase;
+  text-align: center;
+  color: #f96723;
+  margin-top: 10px;
+}
+
+/*--------- LINES ------------*/
+hr {
+  border: 1px solid #f1f0f1;
+}
