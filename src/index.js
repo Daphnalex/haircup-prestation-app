@@ -4,12 +4,10 @@ import './index.css';
 import App from './App';
 
 import { Provider } from "react-redux";
-import {createStore, combineReducers } from "redux";
 
-import {prestationsReducer} from './reducers/prestationsReducer';
+import configureStore from "./store/configureStore";
 
-const store = createStore(combineReducers({prestations: prestationsReducer}),
-window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = configureStore();
 
 //to use store with navigator console
 window.store = store;

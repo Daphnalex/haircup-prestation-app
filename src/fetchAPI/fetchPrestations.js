@@ -1,19 +1,23 @@
-import {fetchPrestationsPending, fetchPrestationsSuccess, fetchPrestationsError} from "./actions/prestationsAction";
+import {fetchPrestationsPending, fetchPrestationsSuccess, fetchPrestationsError} from "../actions/prestationsAction";
 
 const fetchPrestations = () => {
+    console.log("j'entre dans la fonction fetch");
     return dispatch => {
+        console.log('hello');
         dispatch(fetchPrestationsPending());
         fetch('https://www.wecasa.fr/api/techtest/universe')
-          .then(res => res.json())
           .then(res => {
-            if(res.error){
-              console.log('error',res.error);
-              throw(res.error);
+            if (!res.ok){
+              console.log('error 404');
             }
-            dispatch(fetchPrestationsSuccess(res.prestations));
-            return res.prestations;
+            return res.json();
+          })
+          .then(prestations => {
+            dispatch(fetchPrestationsSuccess(prestations));
+            console.log('prestations to dispatch',prestations);
           })
           .catch(error => {
+            console.log('catch error',error);
             dispatch(fetchPrestationsError(error));
           });
     }
