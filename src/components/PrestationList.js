@@ -18,45 +18,32 @@ class PrestationList extends Component {
         this.props.fetchPrestations();
     }
 
+
     render() {
         console.log('prestations',this.props.prestations);
-        const {prestations, error, pending} = this.props;
-        if(pending === true) return <div>En cours de chargement...</div>
-        
+        console.log('pending',this.props.pending);
         return (
             <div>
-                <h1>Réservations</h1>
-                <h2>Coiffure à domicile</h2>
-                <hr/>
-                <div className="sectionCategory">
-                    {error ? 
-                        <div>
-                            Une erreur a été détecté
-                            <br/>
-                            {error}
-                        </div>
-                        :
-                        <div>
-                            <ManSection prestations={prestations}/>
-                            <hr/>
-                            <WomanSection prestations={prestations}/>
-                            <hr/>
-                            <ChildrenSection prestations={prestations}/>
-                        </div>
-                    }
-                    
-                    
+                {this.props.pending ? <div>Loading...</div>
+                : 
+                <div>
+                    <h1>Réservations</h1>
+                    <h2>Coiffure à domicile</h2>
+                    <ManSection prestations={this.props.prestations}/>
                 </div>
+                }
             </div>
         )
+        
     };
 };
 
 const mapStateToProps = (state) => {
+    console.log('state',state);
     return {
-        pending: getPrestationsPending(state),
-        prestations: getPrestations(state),
-        error: getPrestationsError(state)
+        pending: getPrestationsPending(state.prestationsReducer),
+        prestations: getPrestations(state.prestationsReducer),
+        error: getPrestationsError(state.prestationsReducer)
     }
 };
 
