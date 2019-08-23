@@ -3,6 +3,8 @@ import ManSection from "./ManSection";
 import WomanSection from "./WomanSection";
 import ChildrenSection from "./ChildrenSection";
 
+import {connect} from "react-redux";
+
 export default class PrestationList extends Component {
     render() {
         return (
