@@ -5,9 +5,6 @@ const initalState = {
 }
 
 export const shoppingReducer = (state = initalState, action) => {
-    //console.log('enter in shoppingReducer',state);
-    //console.log('action.type',action.type);
-    console.log("length",state.articles.length);
     switch(action.type){
         case ADD_ARTICLE:
             console.log("entre dans ADD",state);
@@ -24,21 +21,15 @@ export const shoppingReducer = (state = initalState, action) => {
 
             if(state.articles.length > 0){
                 let testIsNewArticle = true;
-                const newArticles = state.articles.map((article,i) => {
+                let articleIndex;
+                state.articles.map((article,i) => {
                     if (article.reference === action.payload.reference){
                         //if reference of article exist we add one quantity of the article
                         testIsNewArticle = false;
                         console.log("article avant de le retourner",article);
-                       action.payload.quantity = article.quantity + 1;
-                        console.log("state avant retour",state.articles);
-                        const newArticle = {
-                            ...article,
-                            ...action.payload
-                        }
-                        console.log("newArticle",newArticle);
-                        return newArticle;
+                        console.log("i avant de le retourner",i);
+                       articleIndex = i;
                     }
-                   return state;
                 });
                  if (testIsNewArticle === true){
                      console.log("c'est un nouvel article");
@@ -52,11 +43,45 @@ export const shoppingReducer = (state = initalState, action) => {
                         ]
                     }
                 } else {
-                   console.log("on verra",newArticles);
+                    console.log("index",articleIndex);
                    console.log('newState',state);
-                   return {...state, articles : newArticles};
+                   //return {...state, articles : newArticles};
+                   console.log(state.articles[articleIndex].quantity);
+                   action.payload.quantity = state.articles[articleIndex].quantity + 1;
+                   console.log("action.payload",action.payload);
+                   if (articleIndex === 0){
+                       console.log('index 0')
+                       return {
+                           ...state,
+                           articles: [
+                               action.payload,
+                               ...state.articles.slice(articleIndex + 1)
+                           ]
+                       }
+                   }
+                   else if(articleIndex === state.articles.length - 1){
+                        console.log('dernier index');
+                        console.log(state.articles);
+                        return {
+                            ...state,
+                            articles: [
+                                ...state.articles.slice(0,articleIndex),
+                                action.payload
+                            ]
+                        }
+                   } else {
+                        return {
+                            ...state,
+                            articles : [
+                                ...state.articles.slice(0,articleIndex - 1),
+                                action.payload,
+                                ...state.articles.slice(articleIndex + 1)
+                            ]
+                        }
+                   }
+                   
                 }
-                return state;
+                //return state;
             };
         default:
             return state;
