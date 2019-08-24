@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import CategorySection from "./CategorySection";
+import ShoppingBasket from "./ShoppingBasket";
 
 import {connect} from "react-redux";
-
-import fetchPrestations from "../fetchAPI/fetchPrestations";
-import { getPrestationsPending, getPrestations, getPrestationsError } from "../reducers/prestationsReducer";
 import { bindActionCreators } from 'redux';
+
+import {fetchPrestations} from "../actions/prestationsAction";
+import {addArticle} from "../actions/shoppingAction";
+import { getPrestationsPending, getPrestations, getPrestationsError } from "../reducers/prestationsReducer";
+
+
 
 class PrestationList extends Component {
     constructor(props){
@@ -16,14 +20,11 @@ class PrestationList extends Component {
         this.props.fetchPrestations();
     }
 
-    getPrestation(category){
-        console.log("test category",category);
+    getPrestationsByCategory(category){
         let prestationsByCategory = {};
         this.props.prestations.categories.map((element)=>{
-            console.log('element',element);
             if (element.reference === category){
                 prestationsByCategory = element;
-                console.log('element',element);
                 return element;
             }
         })
@@ -31,8 +32,6 @@ class PrestationList extends Component {
     }
 
     render() {
-        console.log('prestations',this.props.prestations);
-        console.log('pending',this.props.pending);
         return (
             <div>
                 {(this.props.pending || this.props.prestations.length === 0) ? <div>Loading...</div>
@@ -41,15 +40,16 @@ class PrestationList extends Component {
                     <h1>Réservations</h1>
                     <h2>{this.props.prestations.title} à domicile</h2>
                     <hr/>
-                    <CategorySection prestations={this.getPrestation("man")} />
+                    <CategorySection prestations={this.getPrestationsByCategory("man")} articles={this.props.articles} addArticle={this.props.addArticle}/>
                     <hr/>
-                    <CategorySection prestations={this.getPrestation("woman")}/>
+                    <CategorySection prestations={this.getPrestationsByCategory("woman")} articles={this.props.articles} addArticle={this.props.addArticle}/>
                     <hr/>
-                    <CategorySection prestations={this.getPrestation("child")}/>
+                    <CategorySection prestations={this.getPrestationsByCategory("child")} articles={this.props.articles} addArticle={this.props.addArticle}/>
                 </div>
                 }
                 <div className="shop">
                     <h1>Panier</h1>
+                    <ShoppingBasket/>
                 </div>
             </div>
         )
@@ -58,16 +58,17 @@ class PrestationList extends Component {
 };
 
 const mapStateToProps = (state) => {
-    console.log('state',state);
     return {
         pending: getPrestationsPending(state.prestationsReducer),
         prestations: getPrestations(state.prestationsReducer),
-        error: getPrestationsError(state.prestationsReducer)
+        error: getPrestationsError(state.prestationsReducer),
+        
     }
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    fetchPrestations: fetchPrestations
+    fetchPrestations: fetchPrestations,
+    addArticle: addArticle
     }, dispatch);
 
 export default connect(mapStateToProps,mapDispatchToProps)(PrestationList);

@@ -9,21 +9,17 @@ const initialState = {
 export const prestationsReducer = (state = initialState, action) => {
     switch(action.type){
         case FETCH_PRESTATIONS_PENDING:
-            console.log("reducer prestations case 1",state)
             return {
                 ...state,
                 pending: true
             }
         case FETCH_PRESTATIONS_SUCCESS:
-            console.log("reducer prestations case 2",state)
-            console.log(action.payload)
             return {
                 ...state,
                 prestations: action.payload,
                 pending: false
             }
         case FETCH_PRESTATIONS_ERROR:
-            console.log("reducer prestations case 3",state)
             return {
                 ...state,
                 error: action.error

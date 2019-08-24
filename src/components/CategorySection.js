@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
-import * as Button from "react-bootstrap";
 
 export default class CategorySection extends Component {
     constructor(props){
         super(props);
-        console.log("haircut section",this.props.prestations);
     }
 
-    convertPrice(price){
+    convertPrice = (price) => {
         return price/100;
     }
+
+    addArticle = (article) => {
+        this.props.addArticle(article);
+    }
+
     render() {
         
         return (
@@ -21,17 +22,17 @@ export default class CategorySection extends Component {
                     {this.props.prestations.prestations.map((prestation) => (
                         <div key={prestation.reference} className="col-sm-6 col-md-4">
                             <div className="thumbnail">
-                                <div className="caption">
+                                <form className="caption">
                                     <h4>{prestation.title}</h4>
                                     <p><span className="bold">Durée:</span> {prestation.duration} min</p>
                                     <p><span className="bold">Prix:</span> {this.convertPrice(prestation.price).toString().replace('.',',')} €</p>
                                     <p className="reservationButton">
-                                        <button type="button" className="btn btn-success">
+                                        <button type="button" className="btn btn-success" onClick={()=>this.addArticle(prestation)}>
                                             <span className="glyphicon glyphicon-shopping-cart">
                                             </span> Réserver
                                         </button>
                                     </p>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     ))}
