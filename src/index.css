@@ -57,8 +57,19 @@ h4{
   margin-bottom: 30px;
 }
 
+h5 {
+  font-size: 20px;
+  text-align: right;
+  padding-right: 25px;
+  color: white;
+}
+
 .bold{
   font-weight: bold;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 /*--------- LINES ------------*/
@@ -66,7 +77,7 @@ hr {
   border: 1px solid #f1f0f1;
 }
 
-/*-------- Prestations Liste ----------*/
+/*-------- BLOC Prestations Liste ----------*/
 div.thumbnail{
   position:relative;
   height: 260px;
@@ -79,4 +90,24 @@ p.reservationButton{
 }
 p.reservationButton button{
   font-size: 16px;
+}
+
+/*------------- BLOC BASKET -------------*/
+div.shop {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #f96723;
+  color: white;
+  padding: 20px;
+  width: 400px;
+} 
+
+div.shop > h1 {
+  color: white;
+  margin-bottom: 40px;
+}
+
+.totalShop {
+  
 }

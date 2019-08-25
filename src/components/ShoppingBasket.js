@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 
 import {connect} from "react-redux";
 
-import {getArticles} from "../reducers/shoppingReducer";
+import {getArticles, getTotalShop} from "../reducers/shoppingReducer";
 
 class ShoppingBasket extends Component {
 
     constructor(props){
         super(props);
+    }
+
+    tronc(article){
+        if(article.length>25){
+            return article.slice(0,25)+"...";
+        } else {
+            return article;
+        }
     }
 
     render() {
@@ -17,8 +25,6 @@ class ShoppingBasket extends Component {
                     <thead>
                         <tr>
                             <th scope="col">Prestation</th>
-                            <th scope="col">Durée</th>
-                            <th scope="col">Quantité</th>
                             <th scope="col">Prix (en euros)</th>
                         </tr>
                     </thead>
@@ -26,13 +32,7 @@ class ShoppingBasket extends Component {
                     {this.props.articles.map((article,i)=>
                         <tr key={i}>
                             <td>
-                                {article.title}
-                            </td>
-                            <td>
-                                {article.duration}
-                            </td>
-                            <td>
-                                {article.quantity}
+                                {this.tronc(article.title)} x  {article.quantity}
                             </td>
                             <td>
                                 {((article.price*article.quantity)/100)}
@@ -40,16 +40,26 @@ class ShoppingBasket extends Component {
                         </tr>
                     )}
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="row" className="totalShop">
+                                <span className="bold uppercase">Total :</span> {this.props.total}
+                            </th>
+                        </tr>
+                    </tfoot>
                 </table>
+
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    //console.log('state.shoppingReduce in basket',state.shoppingReducer)
+
+    console.log('state.shoppingReduce in basket',state.shoppingReducer)
     return {
-        articles: getArticles(state.shoppingReducer)
+        articles: getArticles(state.shoppingReducer),
+        total: getTotalShop(state.shoppingReducer)
     }
 }
 

@@ -92,3 +92,13 @@ export const getArticles = (state) => {
     console.log("state in add article",state);
     return state.articles;
 }
+
+export const getTotalShop = (state) => {
+    let total = 0;
+    state.articles.map((article) => {
+        total = total + (article.price*article.quantity);
+    });
+    console.log("total du panier",total);
+    //transform cts to euro
+    return total/100;
+}
