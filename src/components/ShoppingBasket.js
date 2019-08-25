@@ -19,6 +19,11 @@ class ShoppingBasket extends Component {
     }
 
     handleChangeQuantity = (event, article) => {
+        console.log('event.target.value',event.target.value);
+        if (article.quantity < event.target.value){
+            console.log('augmente la quantité de l article');
+            this.props.addArticle(article);
+        }
 
     }
 
@@ -50,7 +55,7 @@ class ShoppingBasket extends Component {
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th scope="row" colspan="3" className="totalShop">
+                            <th scope="row" colSpan="3" className="totalShop">
                                 <span className="bold uppercase space">Total :</span> {this.props.showViewPrice(this.props.total)} €
                             </th>
                         </tr>

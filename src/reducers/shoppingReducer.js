@@ -1,4 +1,5 @@
 import {ADD_ARTICLE} from "../actions/shoppingAction";
+import {DELETE_ARTICLE} from "../actions/shoppingAction";
 
 const initalState = {
     articles: []
@@ -24,7 +25,7 @@ export const shoppingReducer = (state = initalState, action) => {
                 let articleIndex;
                 state.articles.map((article,i) => {
                     if (article.reference === action.payload.reference){
-                        //if reference of article exist we add one quantity of the article
+                        //if reference of article exist
                         testIsNewArticle = false;
                         console.log("article avant de le retourner",article);
                         console.log("i avant de le retourner",i);
@@ -43,12 +44,7 @@ export const shoppingReducer = (state = initalState, action) => {
                         ]
                     }
                 } else {
-                    console.log("index",articleIndex);
-                   console.log('newState',state);
-                   //return {...state, articles : newArticles};
-                   console.log(state.articles[articleIndex].quantity);
                    action.payload.quantity = state.articles[articleIndex].quantity + 1;
-                   console.log("action.payload",action.payload);
                    if (articleIndex === 0){
                        console.log('index 0')
                        return {
@@ -60,8 +56,6 @@ export const shoppingReducer = (state = initalState, action) => {
                        }
                    }
                    else if(articleIndex === state.articles.length - 1){
-                        console.log('dernier index');
-                        console.log(state.articles);
                         return {
                             ...state,
                             articles: [
@@ -81,8 +75,70 @@ export const shoppingReducer = (state = initalState, action) => {
                    }
                    
                 }
-                //return state;
             };
+        case DELETE_ARTICLE:
+            //map all articles
+            state.articles.map((article,index) => {
+                //find article by his reference
+                if(article.reference === action.payload.reference){
+                    //if quantity of article = 1 delete article
+                    if(article.quantity === 1){
+                        if (index === 0){
+                            return {
+                                ...state,
+                                articles: [
+                                    ...state.articles.slice(index + 1)
+                                ]
+                            }
+                        } else if (index === state.articles.length - 1){
+                            return {
+                                ...state,
+                                articles: [
+                                    ...state.articles.slice(0, index)
+                                ]
+                            }
+                        } else {
+                            return {
+                                ...state,
+                                articles: [
+                                    ...state.articles.slice(0,index - 1),
+                                    ...state.articles.slice(index+1)
+                                ]
+                            }
+                        }
+                    } else {
+                        //if quantity > 1 we remove one quantity to article
+                        action.payload.quantity = state.articles[index].quantity - 1;
+                        if (index === 0){
+                            return {
+                                ...state,
+                                articles: [
+                                    action.payload,
+                                    ...state.articles.slice(index + 1)
+                                ]
+                            }
+                        }
+                        else if(index === state.articles.length - 1){
+                             return {
+                                 ...state,
+                                 articles: [
+                                     ...state.articles.slice(0,index),
+                                     action.payload
+                                 ]
+                             }
+                        } else {
+                             return {
+                                 ...state,
+                                 articles : [
+                                     ...state.articles.slice(0,index - 1),
+                                     action.payload,
+                                     ...state.articles.slice(index + 1)
+                                 ]
+                             }
+                        }
+                    }
+                }
+            })
         default:
             return state;
     }

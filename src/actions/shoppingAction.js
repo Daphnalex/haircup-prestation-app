@@ -1,4 +1,6 @@
 export const ADD_ARTICLE = "ADD_ARTICLE";
+export const DELETE_ARTICLE = "DELETE_ARTICLE";
+
 
 export const addArticleSuccess = (article) => {
     return {
@@ -12,3 +14,17 @@ export const addArticle = (article) => {
         dispatch(addArticleSuccess(article));
     }
 };
+
+
+export const deleteArticleSuccess = (article) => {
+    return {
+        type: DELETE_ARTICLE,
+        payload: article
+    }
+}
+
+export const deleteArticle = (article) => {
+    return dispatch => {
+        dispatch(deleteArticleSuccess(article));
+    }
+}

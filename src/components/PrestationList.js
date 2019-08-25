@@ -54,7 +54,7 @@ class PrestationList extends Component {
                 }
                 <div className="shop">
                     <h1>Panier</h1>
-                    <ShoppingBasket showViewPrice={this.showViewPrice}/>
+                    <ShoppingBasket showViewPrice={this.showViewPrice} addArticle={this.props.addArticle}/>
                 </div>
             </div>
         )
