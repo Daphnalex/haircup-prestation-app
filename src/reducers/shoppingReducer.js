@@ -93,6 +93,7 @@ export const getArticles = (state) => {
     return state.articles;
 }
 
+//calcul total of buying and send it in euro
 export const getTotalShop = (state) => {
     let total = 0;
     state.articles.map((article) => {

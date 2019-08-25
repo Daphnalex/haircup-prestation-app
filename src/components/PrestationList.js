@@ -31,8 +31,9 @@ class PrestationList extends Component {
         return prestationsByCategory;
     }
 
+    //transform decimal price - 5.5€ -> 5,50€
     showViewPrice = (price) => {
-        return price.toString().replace('.',',');
+        return price.toFixed(2).toString().replace('.',',');
     }
 
     render() {

@@ -107,6 +107,12 @@ div.shop {
   width: 400px;
 } 
 
+div.shop input {
+  background-color: #f96723;
+  border: 0px;
+  width: 50px;
+}
+
 div.shop > h1 {
   color: white;
   margin-bottom: 40px;

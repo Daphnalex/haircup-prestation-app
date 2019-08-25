@@ -18,6 +18,10 @@ class ShoppingBasket extends Component {
         }
     }
 
+    handleChangeQuantity = (event, article) => {
+
+    }
+
     render() {
         return (
             <div>
@@ -26,23 +30,27 @@ class ShoppingBasket extends Component {
                         <tr>
                             <th scope="col">Prestation</th>
                             <th scope="col">Prix (en euros)</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                     {this.props.articles.map((article,i)=>
                         <tr key={i}>
                             <td>
-                                {this.tronc(article.title)} x  {article.quantity}
+                                {this.tronc(article.title)} x  <input type="number" value={article.quantity} onChange={(event) => this.handleChangeQuantity(event, article)} />
                             </td>
                             <td>
-                            {this.props.showViewPrice((article.price*article.quantity)/100)}
+                                {this.props.showViewPrice((article.price*article.quantity)/100)}
+                            </td>
+                            <td>
+                                <span className="glyphicon glyphicon-trash"></span>
                             </td>
                         </tr>
                     )}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th scope="row" colspan="2" className="totalShop">
+                            <th scope="row" colspan="3" className="totalShop">
                                 <span className="bold uppercase space">Total :</span> {this.props.showViewPrice(this.props.total)} €
                             </th>
                         </tr>
