@@ -35,15 +35,15 @@ class ShoppingBasket extends Component {
                                 {this.tronc(article.title)} x  {article.quantity}
                             </td>
                             <td>
-                                {((article.price*article.quantity)/100)}
+                            {this.props.showViewPrice((article.price*article.quantity)/100)}
                             </td>
                         </tr>
                     )}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th scope="row" className="totalShop">
-                                <span className="bold uppercase">Total :</span> {this.props.total}
+                            <th scope="row" colspan="2" className="totalShop">
+                                <span className="bold uppercase space">Total :</span> {this.props.showViewPrice(this.props.total)} €
                             </th>
                         </tr>
                     </tfoot>

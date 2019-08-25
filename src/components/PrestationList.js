@@ -31,6 +31,10 @@ class PrestationList extends Component {
         return prestationsByCategory;
     }
 
+    showViewPrice = (price) => {
+        return price.toString().replace('.',',');
+    }
+
     render() {
         return (
             <div>
@@ -40,16 +44,16 @@ class PrestationList extends Component {
                     <h1>Réservations</h1>
                     <h2>{this.props.prestations.title} à domicile</h2>
                     <hr/>
-                    <CategorySection prestations={this.getPrestationsByCategory("man")} articles={this.props.articles} addArticle={this.props.addArticle}/>
+                    <CategorySection prestations={this.getPrestationsByCategory("man")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice}/>
                     <hr/>
-                    <CategorySection prestations={this.getPrestationsByCategory("woman")} articles={this.props.articles} addArticle={this.props.addArticle}/>
+                    <CategorySection prestations={this.getPrestationsByCategory("woman")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice}/>
                     <hr/>
-                    <CategorySection prestations={this.getPrestationsByCategory("child")} articles={this.props.articles} addArticle={this.props.addArticle}/>
+                    <CategorySection prestations={this.getPrestationsByCategory("child")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice}/>
                 </div>
                 }
                 <div className="shop">
                     <h1>Panier</h1>
-                    <ShoppingBasket/>
+                    <ShoppingBasket showViewPrice={this.showViewPrice}/>
                 </div>
             </div>
         )

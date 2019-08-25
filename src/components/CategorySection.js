@@ -5,10 +5,6 @@ export default class CategorySection extends Component {
         super(props);
     }
 
-    convertPrice = (price) => {
-        return price/100;
-    }
-
     addArticle = (article) => {
         this.props.addArticle(article);
     }
@@ -25,7 +21,7 @@ export default class CategorySection extends Component {
                                 <form className="caption">
                                     <h4>{prestation.title}</h4>
                                     <p><span className="bold">Durée:</span> {prestation.duration} min</p>
-                                    <p><span className="bold">Prix:</span> {this.convertPrice(prestation.price).toString().replace('.',',')} €</p>
+                                    <p><span className="bold">Prix:</span> {this.props.showViewPrice(prestation.price/100)} €</p>
                                     <p className="reservationButton">
                                         <button type="button" className="btn btn-success" onClick={()=>this.addArticle(prestation)}>
                                             <span className="glyphicon glyphicon-shopping-cart">
@@ -39,5 +35,5 @@ export default class CategorySection extends Component {
                 </div>
             </div>
         )
-    }
+    }convertPrice
 }
