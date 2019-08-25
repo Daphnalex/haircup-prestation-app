@@ -77,40 +77,50 @@ export const shoppingReducer = (state = initalState, action) => {
                 }
             };
         case DELETE_ARTICLE:
+            console.log("reducer delete article");
             //map all articles
+            let newState;
             state.articles.map((article,index) => {
+                console.log("map articles");
                 //find article by his reference
                 if(article.reference === action.payload.reference){
+                    console.log("référence de l'article trouvé");
                     //if quantity of article = 1 delete article
                     if(article.quantity === 1){
+                        console.log("quantité de l'article = 1")
                         if (index === 0){
-                            return {
+                            console.log("index = 0");
+                            newState = {
                                 ...state,
                                 articles: [
                                     ...state.articles.slice(index + 1)
                                 ]
                             }
                         } else if (index === state.articles.length - 1){
-                            return {
+                            console.log("index = dernier article")
+                            newState = {
                                 ...state,
                                 articles: [
                                     ...state.articles.slice(0, index)
                                 ]
                             }
                         } else {
-                            return {
+                            console.log("index au milieu")
+                            newState = {
                                 ...state,
                                 articles: [
-                                    ...state.articles.slice(0,index - 1),
+                                    ...state.articles.slice(0,index),
                                     ...state.articles.slice(index+1)
                                 ]
                             }
                         }
                     } else {
+                        console.log("plus d'une quantité trouvé")
                         //if quantity > 1 we remove one quantity to article
                         action.payload.quantity = state.articles[index].quantity - 1;
                         if (index === 0){
-                            return {
+                            console.log("index = 0")
+                            newState = {
                                 ...state,
                                 articles: [
                                     action.payload,
@@ -119,7 +129,8 @@ export const shoppingReducer = (state = initalState, action) => {
                             }
                         }
                         else if(index === state.articles.length - 1){
-                             return {
+                            console.log("index = dernier article")
+                            newState = {
                                  ...state,
                                  articles: [
                                      ...state.articles.slice(0,index),
@@ -127,18 +138,25 @@ export const shoppingReducer = (state = initalState, action) => {
                                  ]
                              }
                         } else {
-                             return {
+                            console.log("article au milieu");
+                            console.log("action payload",action.payload);
+                            console.log("articles",state.articles);
+                            console.log(state.articles.slice(0,index-1))
+                             newState = {
                                  ...state,
                                  articles : [
-                                     ...state.articles.slice(0,index - 1),
+                                     ...state.articles.slice(0,index),
                                      action.payload,
                                      ...state.articles.slice(index + 1)
                                  ]
                              }
+                             console.log("newState avant sortie",newState);
                         }
                     }
                 }
-            })
+            });
+            console.log("newState",newState);
+            return newState;
         default:
             return state;
     }

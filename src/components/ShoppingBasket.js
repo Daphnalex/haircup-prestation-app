@@ -23,6 +23,9 @@ class ShoppingBasket extends Component {
         if (article.quantity < event.target.value){
             console.log('augmente la quantité de l article');
             this.props.addArticle(article);
+        } else {
+            console.log('on enlève un article');
+            this.props.deleteArticle(article);
         }
 
     }

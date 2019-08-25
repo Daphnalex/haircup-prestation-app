@@ -24,6 +24,7 @@ export const deleteArticleSuccess = (article) => {
 }
 
 export const deleteArticle = (article) => {
+    console.log('action delete article');
     return dispatch => {
         dispatch(deleteArticleSuccess(article));
     }

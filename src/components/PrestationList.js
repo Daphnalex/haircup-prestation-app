@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import { bindActionCreators } from 'redux';
 
 import {fetchPrestations} from "../actions/prestationsAction";
-import {addArticle} from "../actions/shoppingAction";
+import {addArticle, deleteArticle} from "../actions/shoppingAction";
 import { getPrestationsPending, getPrestations, getPrestationsError } from "../reducers/prestationsReducer";
 
 
@@ -54,7 +54,7 @@ class PrestationList extends Component {
                 }
                 <div className="shop">
                     <h1>Panier</h1>
-                    <ShoppingBasket showViewPrice={this.showViewPrice} addArticle={this.props.addArticle}/>
+                    <ShoppingBasket showViewPrice={this.showViewPrice} addArticle={this.props.addArticle} deleteArticle={this.props.deleteArticle}/>
                 </div>
             </div>
         )
@@ -73,7 +73,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     fetchPrestations: fetchPrestations,
-    addArticle: addArticle
+    addArticle: addArticle,
+    deleteArticle: deleteArticle
     }, dispatch);
 
 export default connect(mapStateToProps,mapDispatchToProps)(PrestationList);
