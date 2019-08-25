@@ -33,7 +33,10 @@ class ShoppingBasket extends Component {
     render() {
         return (
             <div>
-                <table className="table">
+                {this.props.articles.length === 0 ?
+                    <div className="italic">Aucun article dans le panier</div>
+                    :
+                    <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Prestation</th>
@@ -45,13 +48,13 @@ class ShoppingBasket extends Component {
                     {this.props.articles.map((article,i)=>
                         <tr key={i}>
                             <td>
-                                {this.tronc(article.title)} x  <input type="number" value={article.quantity} onChange={(event) => this.handleChangeQuantity(event, article)} />
+                                <span className="titleArticle">{this.tronc(article.title)}</span> x  <input className="quantityArticle" type="number" value={article.quantity} onChange={(event) => this.handleChangeQuantity(event, article)} />
                             </td>
                             <td>
                                 {this.props.showViewPrice((article.price*article.quantity)/100)}
                             </td>
                             <td>
-                                <span className="glyphicon glyphicon-trash"></span>
+                                <div onClick={()=>this.props.deleteReferenceArticle(article)}><span className="glyphicon glyphicon-trash"></span></div>
                             </td>
                         </tr>
                     )}
@@ -64,7 +67,7 @@ class ShoppingBasket extends Component {
                         </tr>
                     </tfoot>
                 </table>
-
+                }
             </div>
         )
     }

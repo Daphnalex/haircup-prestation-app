@@ -1,5 +1,5 @@
 import {ADD_ARTICLE} from "../actions/shoppingAction";
-import {DELETE_ARTICLE} from "../actions/shoppingAction";
+import {DELETE_ARTICLE, DELETE_REFERENCE_ARTICLE} from "../actions/shoppingAction";
 
 const initalState = {
     articles: []
@@ -8,7 +8,7 @@ const initalState = {
 export const shoppingReducer = (state = initalState, action) => {
     switch(action.type){
         case ADD_ARTICLE:
-            console.log("entre dans ADD",state);
+            console.log("case ADD ARTICLE",state);
             
             if(state.articles.length === 0){
                 action.payload.quantity = 1;
@@ -77,7 +77,7 @@ export const shoppingReducer = (state = initalState, action) => {
                 }
             };
         case DELETE_ARTICLE:
-            console.log("reducer delete article");
+            console.log("case DELETE ARTICLE");
             //map all articles
             let newState;
             state.articles.map((article,index) => {
@@ -157,6 +157,39 @@ export const shoppingReducer = (state = initalState, action) => {
             });
             console.log("newState",newState);
             return newState;
+        case DELETE_REFERENCE_ARTICLE:
+            console.log('case DELETE REFERENCE',state);
+            console.log("payload",action.payload.reference);
+            let newStateRef;
+            state.articles.map((article,index)=> {
+                if (article.reference === action.payload.reference){
+                    if (index === 0){
+                        newStateRef = {
+                            ...state,
+                            articles: [
+                                ...state.articles.slice(index+1)
+                            ]
+                        };
+                    } else if (index === state.articles.length -1){
+                        newStateRef = {
+                            ...state,
+                            articles: [
+                                ...state.articles.slice(0,index)
+                            ]
+                        }
+                    } else {
+                        newStateRef = {
+                            ...state,
+                            articles: [
+                                ...state.articles.slice(0,index),
+                                ...state.articles.slice(index + 1)
+                            ]
+                        }
+                    }
+                }
+            });
+            console.log('new state ref',newStateRef);
+            return newStateRef;
         default:
             return state;
     }
