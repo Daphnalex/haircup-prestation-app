@@ -49,7 +49,7 @@ class PrestationList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 {(this.props.pending || this.props.prestations.length === 0) ? <div>Loading...</div>
                 : 
                 <div>

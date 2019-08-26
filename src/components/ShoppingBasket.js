@@ -36,38 +36,45 @@ class ShoppingBasket extends Component {
                 {this.props.articles.length === 0 ?
                     <div className="italic">Aucun article dans le panier</div>
                     :
-                    <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Prestation</th>
-                            <th scope="col">Prix (en euros)</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {this.props.articles.map((article,i)=>
-                        <tr key={i}>
-                            <td>
-                                <span className="titleArticle">{this.tronc(article.title)}</span> x  <input className="quantityArticle" type="number" value={article.quantity} onChange={(event) => this.handleChangeQuantity(event, article)} />
-                            </td>
-                            <td>
-                                {this.props.showViewPrice((article.price*article.quantity)/100)}
-                            </td>
-                            <td>
-                                <div onClick={()=>this.props.deleteReferenceArticle(article)}><span className="glyphicon glyphicon-trash"></span></div>
-                            </td>
-                        </tr>
-                    )}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th scope="row" colSpan="3" className="totalShop">
-                                <span className="bold uppercase space">Total :</span> {this.props.showViewPrice(this.props.total)} €
-                            </th>
-                        </tr>
-                    </tfoot>
-                </table>
+                    <div>
+                        <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Prestation</th>
+                                <th scope="col">Prix (en euros)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {this.props.articles.map((article,i)=>
+                            <tr key={i}>
+                                <td>
+                                    <span className="titleArticle">{this.tronc(article.title)}</span> x  <input className="quantityArticle" type="number" value={article.quantity} onChange={(event) => this.handleChangeQuantity(event, article)} />
+                                </td>
+                                <td>
+                                    {this.props.showViewPrice((article.price*article.quantity)/100)}
+                                </td>
+                                <td>
+                                    <div onClick={()=>this.props.deleteReferenceArticle(article)}><span className="glyphicon glyphicon-trash"></span></div>
+                                </td>
+                            </tr>
+                        )}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th scope="row" colSpan="3" className="totalShop">
+                                    <span className="bold uppercase space">Total :</span> {this.props.showViewPrice(this.props.total)} €
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <button type="button" className="btn btn-success" >
+                        <span className="glyphicon glyphicon-shopping-cart">
+                        </span> Finaliser la réservation
+                    </button> 
+                </div>
                 }
+                
             </div>
         )
     }
