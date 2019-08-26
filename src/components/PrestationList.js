@@ -41,6 +41,7 @@ class PrestationList extends Component {
     }
 
     showShopBasket = (bool) => {
+        console.log("montre le panier ?",bool);
         this.setState({
             showBasket: bool
         });
@@ -55,11 +56,11 @@ class PrestationList extends Component {
                     <h1>Réservations</h1>
                     <h2>{this.props.prestations.title} à domicile</h2>
                     <hr/>
-                    <CategorySection prestations={this.getPrestationsByCategory("man")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice}/>
+                    <CategorySection prestations={this.getPrestationsByCategory("man")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice} showShopBasket={this.showShopBasket}/>
                     <hr/>
-                    <CategorySection prestations={this.getPrestationsByCategory("woman")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice}/>
+                    <CategorySection prestations={this.getPrestationsByCategory("woman")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice} showShopBasket={this.showShopBasket}/>
                     <hr/>
-                    <CategorySection prestations={this.getPrestationsByCategory("child")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice}/>
+                    <CategorySection prestations={this.getPrestationsByCategory("child")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice} showShopBasket={this.showShopBasket}/>
                 </div>
                 }
                 {

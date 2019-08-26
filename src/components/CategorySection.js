@@ -6,7 +6,15 @@ export default class CategorySection extends Component {
     }
 
     addArticle = (article) => {
+        this.props.showShopBasket(true);
         this.props.addArticle(article);
+        setTimeout(
+            function() {
+                this.props.showShopBasket(false);
+            }
+            .bind(this),
+            2000
+        );
     }
 
     render() {
