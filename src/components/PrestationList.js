@@ -64,12 +64,13 @@ class PrestationList extends Component {
                 }
                 {
                   this.state.showBasket ?
-                    <div className="shop">
-                        <h1>Panier</h1>
+                    <div className="shop row">
+                        <div className="col-xs-offset-10 col-xs-2"> <span onClick={()=>this.showShopBasket(false)} className="glyphicon glyphicon-remove"></span></div>
+                        <h1>Panier</h1> 
                         <ShoppingBasket showViewPrice={this.showViewPrice} addArticle={this.props.addArticle} deleteArticle={this.props.deleteArticle} deleteReferenceArticle={this.props.deleteReferenceArticle}/>
                     </div>
                   :
-                  <div className="shopHidden">
+                  <div className="shopHidden" onClick={()=>this.showShopBasket(true)}>
                     <span className="glyphicon glyphicon-shopping-cart"></span>
                     <div>{this.props.totalArticles}</div>
                   </div>
