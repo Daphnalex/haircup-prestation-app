@@ -3,8 +3,8 @@ import './App.css';
 
 import { connect } from "react-redux";
 
-import Header from './components/Header';
-import PrestationList from './components/PrestationList';
+import Header from './components/functionalComponent/Header';
+import PrestationListPage from './components/PrestationListPage';
 import AdressReservationPage from "./components/AdressReservationPage";
 import DateReservationPage from "./components/DateReservationPage";
 import ConfirmationReservationPage from "./components/ConfirmationReservationPage";
@@ -24,7 +24,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header logosrc={logo}/>
-          <Route exact path="/" component={PrestationList}/>
+          <Route exact path="/" component={PrestationListPage}/>
           <Route path="/adress-reservation" component={AdressReservationPage} />
           <Route path="/date-reservation" component={DateReservationPage} />
           <Route path="/confirmation-reservation" component={ConfirmationReservationPage} />

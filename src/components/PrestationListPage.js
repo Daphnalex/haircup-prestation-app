@@ -12,7 +12,7 @@ import { getNumberArticle } from "../reducers/shoppingReducer";
 
 
 
-class PrestationList extends Component {
+class PrestationListPage extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -99,4 +99,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     deleteReferenceArticle: deleteReferenceArticle
     }, dispatch);
 
-export default connect(mapStateToProps,mapDispatchToProps)(PrestationList);
+export default connect(mapStateToProps,mapDispatchToProps)(PrestationListPage);
