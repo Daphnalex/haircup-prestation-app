@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import BreadCrumb from "./functionalComponent/BreadCrumbs"
 
 export default class DateReservationPage extends Component {
     render() {
         return (
-            <div>
-                Date réservation page
+            <div className="container">
+                <div>
+                    <BreadCrumb page={"DateReservationPage"} />
+                </div>
             </div>
         )
     }

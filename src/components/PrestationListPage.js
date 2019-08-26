@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CategorySection from "./CategorySection";
 import ShoppingBasket from "./ShoppingBasket";
+import BreadCrumb from "./functionalComponent/BreadCrumbs";
 
 import {connect} from "react-redux";
 import { bindActionCreators } from 'redux';
@@ -39,6 +40,7 @@ class PrestationListPage extends Component {
     render() {
         return (
             <div className="container">
+                <BreadCrumb page={"AdressReservationPage"} />
                 {(this.props.pending || this.props.prestations.length === 0) ? <div>Loading...</div>
                 : 
                 <div>

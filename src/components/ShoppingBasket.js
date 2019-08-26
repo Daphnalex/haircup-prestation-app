@@ -70,7 +70,7 @@ class ShoppingBasket extends Component {
                             </tr>
                         </tfoot>
                     </table>
-                    <ButtonIcon title="Finaliser la réservation" action={()=>{window.location.replace('/adress');}} icon="glyphicon-shopping-cart"/>
+                    <ButtonIcon title="Finaliser la réservation" action={()=>{window.location.replace('/adress-reservation');}} icon="glyphicon-shopping-cart"/>
                 </div>
                 }
                 

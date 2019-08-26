@@ -29,6 +29,10 @@ nav img{
   float: left;
 }
 
+.breadcrumb{
+  text-align: left;
+}
+
 /*------- TITLE -------*/
 
 h1 {
@@ -156,4 +160,30 @@ div.shopHidden{
 
 div.shopHidden:hover{
   cursor: pointer;
+}
+
+/*-------------- Adress reservation page -------------*/
+
+div#locationField{
+  text-align: left;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+form {
+  
+}
+
+input#autocomplete {
+  width: 100%;
+}
+
+form label {
+  display: block;
+  margin: 20px 0px 10px 20px;
+  text-align: left !important;
+}
+
+div#googlePlace{
+  margin-top: 20px;
 }
