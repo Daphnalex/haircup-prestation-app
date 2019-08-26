@@ -19,10 +19,10 @@ export default class CategorySection extends Component {
                 <h3>{this.props.prestations.title}</h3>
                 <div className="row">
                     {this.props.prestations.prestations.map((prestation) => (
-                        <BlocPrestation prestation={prestation} addArticle={this.addArticle} showViewPrice={this.props.showViewPrice}/>
+                        <BlocPrestation key={prestation.reference} prestation={prestation} addArticle={this.addArticle} showViewPrice={this.props.showViewPrice}/>
                     ))}
                 </div>
             </div>
         )
-    }convertPrice
+    }
 }

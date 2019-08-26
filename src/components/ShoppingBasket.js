@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 
 import {getArticles, getTotalShop} from "../reducers/shoppingReducer";
 
+import ButtonIcon from "./functionalComponent/ButtonIcon";
+
 class ShoppingBasket extends Component {
 
     constructor(props){
@@ -68,10 +70,7 @@ class ShoppingBasket extends Component {
                             </tr>
                         </tfoot>
                     </table>
-                    <button type="button" className="btn btn-success" >
-                        <span className="glyphicon glyphicon-shopping-cart">
-                        </span> Finaliser la réservation
-                    </button> 
+                    <ButtonIcon title="Finaliser la réservation" action={()=>{window.location.replace('/adress');}} icon="glyphicon-shopping-cart"/>
                 </div>
                 }
                 

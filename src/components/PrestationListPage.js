@@ -24,17 +24,6 @@ class PrestationListPage extends Component {
         this.props.fetchPrestations();
     }
 
-    getPrestationsByCategory(category){
-        let prestationsByCategory = {};
-        this.props.prestations.categories.map((element)=>{
-            if (element.reference === category){
-                prestationsByCategory = element;
-                return element;
-            }
-        })
-        return prestationsByCategory;
-    }
-
     //transform decimal price - 5.5€ -> 5,50€
     showViewPrice = (price) => {
         return price.toFixed(2).toString().replace('.',',');
@@ -55,12 +44,14 @@ class PrestationListPage extends Component {
                 <div>
                     <h1>Réservations</h1>
                     <h2>{this.props.prestations.title} à domicile</h2>
-                    <hr/>
-                    <CategorySection prestations={this.getPrestationsByCategory("man")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice} showShopBasket={this.showShopBasket}/>
-                    <hr/>
-                    <CategorySection prestations={this.getPrestationsByCategory("woman")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice} showShopBasket={this.showShopBasket}/>
-                    <hr/>
-                    <CategorySection prestations={this.getPrestationsByCategory("child")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice} showShopBasket={this.showShopBasket}/>
+                    {
+                        this.props.prestations.categories.map((element) => (
+                            <div key={element.reference}>
+                                <hr/>
+                                <CategorySection prestations={element} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice} showShopBasket={this.showShopBasket}/>
+                            </div>
+                        ))
+                    }
                 </div>
                 }
                 {
