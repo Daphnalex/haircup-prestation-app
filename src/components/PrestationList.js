@@ -7,13 +7,17 @@ import { bindActionCreators } from 'redux';
 
 import {fetchPrestations} from "../actions/prestationsAction";
 import {addArticle, deleteArticle, deleteReferenceArticle} from "../actions/shoppingAction";
-import { getPrestationsPending, getPrestations, getPrestationsError } from "../reducers/prestationsReducer";
+import { getPrestationsPending, getPrestations, getPrestationsError } from "../reducers/prestationsReducer"; 
+import { getNumberArticle } from "../reducers/shoppingReducer";
 
 
 
 class PrestationList extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            showBasket: false
+        }
     }
 
     componentWillMount(){
@@ -36,6 +40,12 @@ class PrestationList extends Component {
         return price.toFixed(2).toString().replace('.',',');
     }
 
+    showShopBasket = (bool) => {
+        this.setState({
+            showBasket: bool
+        });
+    }
+
     render() {
         return (
             <div>
@@ -52,10 +62,18 @@ class PrestationList extends Component {
                     <CategorySection prestations={this.getPrestationsByCategory("child")} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice}/>
                 </div>
                 }
-                <div className="shop">
-                    <h1>Panier</h1>
-                    <ShoppingBasket showViewPrice={this.showViewPrice} addArticle={this.props.addArticle} deleteArticle={this.props.deleteArticle} deleteReferenceArticle={this.props.deleteReferenceArticle}/>
-                </div>
+                {
+                  this.state.showBasket ?
+                    <div className="shop">
+                        <h1>Panier</h1>
+                        <ShoppingBasket showViewPrice={this.showViewPrice} addArticle={this.props.addArticle} deleteArticle={this.props.deleteArticle} deleteReferenceArticle={this.props.deleteReferenceArticle}/>
+                    </div>
+                  :
+                  <div className="shopHidden">
+                    <span className="glyphicon glyphicon-shopping-cart"></span>
+                    <div>{this.props.totalArticles}</div>
+                  </div>
+                }
             </div>
         )
         
@@ -67,6 +85,7 @@ const mapStateToProps = (state) => {
         pending: getPrestationsPending(state.prestationsReducer),
         prestations: getPrestations(state.prestationsReducer),
         error: getPrestationsError(state.prestationsReducer),
+        totalArticles: getNumberArticle(state.shoppingReducer)
         
     }
 };

@@ -210,3 +210,13 @@ export const getTotalShop = (state) => {
     //transform cts to euro
     return total/100;
 }
+
+export const getNumberArticle = (state) => {
+    let totalArticles = 0;
+    console.log("articles",state);
+    state.articles.map((article) => {
+        totalArticles = totalArticles + article.quantity;
+    })
+    console.log("totalArticles",totalArticles);
+    return totalArticles;
+}
