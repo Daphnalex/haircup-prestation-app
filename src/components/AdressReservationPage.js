@@ -68,7 +68,9 @@ export default class AdressReservationPage extends Component {
                             <input type="text" className="form-control" id="inputState" disabled={true} placeholder={this.state.inputState}/>
                         </div>
                     </div>
-                    <ButtonIcon action={()=> window.location.replace('/date-reservation')} title="Réserver votre date" icon=""/>
+                    {(this.state.address !== "" &&
+                        <ButtonIcon action={()=> window.location.replace('/date-reservation')} title="Réserver votre date" icon=""/>
+                    )}
                 </form>
             </div>
         )
