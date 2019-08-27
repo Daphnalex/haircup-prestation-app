@@ -7,7 +7,7 @@ const selectAddressSuccess = (address) => {
     }
 };
 
-const selectAdress = (address) => {
+export const selectAddress = (address) => {
     return dispatch => {
         dispatch(selectAddressSuccess(address));
     }
