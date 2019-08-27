@@ -67,7 +67,7 @@ export const shoppingReducer = (state = initalState, action) => {
                         return {
                             ...state,
                             articles : [
-                                ...state.articles.slice(0,articleIndex - 1),
+                                ...state.articles.slice(0,articleIndex),
                                 action.payload,
                                 ...state.articles.slice(articleIndex + 1)
                             ]
