@@ -24,10 +24,12 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header logosrc={logo}/>
-          <Route exact path="/" component={PrestationListPage}/>
-          <Route path="/adress-reservation" component={AdressReservationPage} />
-          <Route path="/date-reservation" component={DateReservationPage} />
-          <Route path="/confirmation-reservation" component={ConfirmationReservationPage} />
+          <div className="container">
+            <Route exact path="/" component={PrestationListPage}/>
+            <Route path="/adress-reservation" component={AdressReservationPage} />
+            <Route path="/date-reservation" component={DateReservationPage} />
+            <Route path="/confirmation-reservation" component={ConfirmationReservationPage} />
+          </div>
         </div>
       </Router>
     );

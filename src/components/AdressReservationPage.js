@@ -20,7 +20,7 @@ class AdressReservationPage extends Component {
     render() {
         console.log("new address", this.props.address);
         return (
-            <div className="container">
+            <div>
                 <BreadCrumb page={"AdressReservationPage"} />
                 <form>
                     <div className="form-row">

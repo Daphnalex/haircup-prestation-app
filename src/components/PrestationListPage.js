@@ -39,7 +39,7 @@ class PrestationListPage extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 <BreadCrumb page={"AdressReservationPage"} />
                 {(this.props.pending || this.props.prestations.length === 0) ? <div>Loading...</div>
                 : 
