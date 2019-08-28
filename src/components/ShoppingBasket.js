@@ -32,6 +32,16 @@ class ShoppingBasket extends Component {
 
     }
 
+    saveBasketShop = () => {
+        let prestations = [];
+        console.log('articles',this.props.articles);
+        this.props.articles.map((article) => {
+            prestations = [...prestations, article.title];
+        })
+        localStorage.setItem("prestations", prestations);
+        window.location.replace('/adress-reservation');
+    }
+
     render() {
         return (
             <div>
@@ -70,7 +80,7 @@ class ShoppingBasket extends Component {
                             </tr>
                         </tfoot>
                     </table>
-                    <ButtonIcon title="Finaliser la réservation" action={()=>{window.location.replace('/adress-reservation');}} icon="glyphicon-shopping-cart"/>
+                    <ButtonIcon title="Finaliser la réservation" action={()=>this.saveBasketShop()} icon="glyphicon-shopping-cart"/>
                 </div>
                 }
                 

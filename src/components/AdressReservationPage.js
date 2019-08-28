@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
 
 import GooglePlacesAutocompleteComponent from './functionalComponent/GooglePlacesAutocomplete';
 
 import BreadCrumb from "./functionalComponent/BreadCrumbs";
 import ButtonIcon from "./functionalComponent/ButtonIcon";
-import { bindActionCreators } from 'redux';
+
 
 import { selectAddress } from "../actions/addressSelectionAction";
 import { getAddress } from "../reducers/addressReducer";
@@ -15,6 +16,12 @@ class AdressReservationPage extends Component {
     
     constructor(props){
         super(props);
+        console.log('address page',localStorage);
+    }
+
+    saveAdress = () => {
+        localStorage.setItem('address',JSON.stringify(this.props.address));
+        window.location.replace('/date-reservation');
     }
     
     render() {
@@ -52,7 +59,7 @@ class AdressReservationPage extends Component {
                         </div>
                     </div>
                     {(this.props.address !== "" &&
-                        <ButtonIcon action={()=> window.location.replace('/date-reservation')} title="Réserver votre date" icon=""/>
+                        <ButtonIcon action={() => this.saveAdress()} title="Réserver votre date" icon=""/>
                     )}
                 </form>
             </div>

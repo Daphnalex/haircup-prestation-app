@@ -1,6 +1,14 @@
 import React, {Component} from "react";
 
-import moment from 'moment';
+/* eslint-disable import/first */
+const moment = require('moment');
+
+import {connect} from "react-redux";
+import { bindActionCreators } from 'redux';
+
+import { selectDate } from "../actions/dateSelectionAction";
+import { getDate } from "../reducers/dateReducer";
+import { getAddress } from "../reducers/addressReducer";
 
 import BreadCrumb from './functionalComponent/BreadCrumbs';
 import ButtonIcon from "./functionalComponent/ButtonIcon";
@@ -12,14 +20,14 @@ registerLocale("fr", fr); // register it with the name you want
 
 
 
-export default class DateReservationPage extends Component {
+class DateReservationPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            startDate: null,
             excludeTimes: []
         };
         this.handleChange = this.handleChange.bind(this);
+        console.log('constructor',localStorage);
     }
 
     componentDidMount = () => {
@@ -31,6 +39,7 @@ export default class DateReservationPage extends Component {
 
         hours.map((hour) => {
             minutes.map((minute) => {
+                console.log("heure d'été",(new Date(2010,2,30)).getTimezoneOffset());
                 newExcludeTimes = [...newExcludeTimes, new Date(dateSelected.setHours(hour)).setMinutes(minute)];
             })
         });
@@ -40,16 +49,8 @@ export default class DateReservationPage extends Component {
 
     }
 
-    componentDidUpdate = () => {
-        console.log('update');
-
-        
-    }
-
     handleChange = (date) => {
-        this.setState({
-            startDate: date
-        });
+        this.props.selectDate(date);
     }
 
     isWeekday = date => {
@@ -58,6 +59,16 @@ export default class DateReservationPage extends Component {
         return day !== 0;
     }
 
+    addBooking = () => {
+       //window.location.replace('/confirmation-reservation');
+        const prestations = localStorage.prestations.split(',');
+        const booking = {
+            prestations: prestations,
+            appointement: moment.parseZone(this.props.startDate).local().format(),
+            address: JSON.parse(localStorage.address).description
+        }
+        console.log("booking",booking);
+    }
     
      
     render(){
@@ -70,7 +81,7 @@ export default class DateReservationPage extends Component {
                 <div className="left">
                     <div className="bold uppercase">Choisissez votre date et votre créneau de rendez-vous : </div>
                     <DatePicker
-                        selected={this.state.startDate}
+                        selected={this.props.startDate}
                         onChange={date => this.handleChange(date)}
                         locale="fr"
                         showTimeSelect
@@ -84,11 +95,24 @@ export default class DateReservationPage extends Component {
                     />
                 </div>
                 <div>
-                {this.state.startDate !== null &&
-                    <ButtonIcon action={()=> window.location.replace('/confirmation-reservation')} title="Confirmer votre réservation" icon=""/>
+                {this.props.startDate !== null &&
+                    <ButtonIcon action={()=> this.addBooking()} title="Confirmer votre réservation" icon=""/>
                 }
                 </div>
             </div>
           );
       }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        startDate: getDate(state.dateReducer),
+        address: getAddress(state.addressReducer)
+    }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    selectDate: selectDate
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(DateReservationPage);

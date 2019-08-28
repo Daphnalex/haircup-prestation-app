@@ -17,5 +17,14 @@ export const addressReducer = ( state = initialState, action) => {
 }
 
 export const getAddress = (state) => {
-    return state.address;
+    console.log("state address",state.address);
+    console.log('type',typeof(JSON.parse(localStorage.address)));
+    console.log("localstorage",localStorage);
+    if (state.address === ""){
+        console.log('ici')
+        return JSON.parse(localStorage.address);
+    } else {
+        return state.address;
+   }
+    
 }
