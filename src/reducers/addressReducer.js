@@ -1,7 +1,15 @@
 import { SELECT_ADDRESS } from "../actions/addressSelectionAction";
 
+if (!localStorage.address){
+    localStorage.setItem('address',"");
+};
+
 const initialState = {
     address : ""
+}
+
+if (localStorage.address !== ""){
+    initialState.address = JSON.parse(localStorage.address);
 }
 
 export const addressReducer = ( state = initialState, action) => {
@@ -17,14 +25,5 @@ export const addressReducer = ( state = initialState, action) => {
 }
 
 export const getAddress = (state) => {
-    console.log("state address",state.address);
-    console.log('type',typeof(JSON.parse(localStorage.address)));
-    console.log("localstorage",localStorage);
-    if (state.address === ""){
-        console.log('ici')
-        return JSON.parse(localStorage.address);
-    } else {
-        return state.address;
-   }
-    
+    return state.address;
 }
