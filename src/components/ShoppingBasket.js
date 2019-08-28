@@ -35,8 +35,9 @@ class ShoppingBasket extends Component {
     saveBasketShop = () => {
         let prestations = [];
         console.log('articles',this.props.articles);
+        localStorage.setItem('articles',JSON.stringify(this.props.articles));
         this.props.articles.map((article) => {
-            prestations = [...prestations, article.title];
+            prestations = [...prestations, article.reference];
         })
         localStorage.setItem("prestations", prestations);
         window.location.replace('/adress-reservation');

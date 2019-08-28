@@ -4,7 +4,9 @@ export default class ConfirmationReservationPage extends Component {
     render() {
         return (
             <div>
-                Page de confirmation de réservation
+                Votre réservation a bien été prise en compte.
+                <br/>
+                Merci de votre visite
             </div>
         )
     }

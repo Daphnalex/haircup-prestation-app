@@ -2,7 +2,7 @@ import {ADD_ARTICLE} from "../actions/shoppingAction";
 import {DELETE_ARTICLE, DELETE_REFERENCE_ARTICLE} from "../actions/shoppingAction";
 
 const initalState = {
-    articles: []
+    articles: JSON.parse(localStorage.articles) || []
 }
 
 export const shoppingReducer = (state = initalState, action) => {
@@ -196,16 +196,32 @@ export const shoppingReducer = (state = initalState, action) => {
 }
 
 export const getArticles = (state) => {
-    console.log("state in add article",state);
-    return state.articles;
+    // console.log("state articles",state.articles);
+    // console.log('type',typeof(JSON.parse(localStorage.articles)));
+    // console.log("localstorage",localStorage);
+    let articles = JSON.parse(localStorage.articles);
+    if (state.articles.length === 0){
+        //console.log('ici',JSON.parse(localStorage.articles));
+        return articles;
+    } else {
+        return state.articles;
+   }
 }
 
 //calcul total of buying and send it in euro
 export const getTotalShop = (state) => {
     let total = 0;
-    state.articles.map((article) => {
-        total = total + (article.price*article.quantity);
-    });
+    let articles = JSON.parse(localStorage.articles);
+    if (state.articles.length !== 0){
+        state.articles.map((article) => {
+            total = total + (article.price*article.quantity);
+        });
+    } else {
+        articles.map((article) => {
+            total = total + (article.price*article.quantity);
+        })
+    }
+    
     console.log("total du panier",total);
     //transform cts to euro
     return total/100;
@@ -213,10 +229,19 @@ export const getTotalShop = (state) => {
 
 export const getNumberArticle = (state) => {
     let totalArticles = 0;
-    console.log("articles",state);
-    state.articles.map((article) => {
-        totalArticles = totalArticles + article.quantity;
-    })
-    console.log("totalArticles",totalArticles);
+    // console.log("articles",state);
+    // console.log("localStorage",typeof(JSON.parse(localStorage.articles)));
+    // console.log("localStorage",JSON.parse(localStorage.articles));
+    let articles = JSON.parse(localStorage.articles);
+    if (state.articles.length !== 0){
+        state.articles.map((article) => {
+            totalArticles = totalArticles + article.quantity;
+        });
+    } else {
+        articles.map((article) => {
+            totalArticles = totalArticles + (article.price*article.quantity);
+        });
+    }
+    //console.log("totalArticles",totalArticles);
     return totalArticles;
 }

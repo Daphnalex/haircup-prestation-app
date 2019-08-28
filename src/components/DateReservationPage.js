@@ -6,7 +6,7 @@ const moment = require('moment');
 import {connect} from "react-redux";
 import { bindActionCreators } from 'redux';
 
-import { selectDate } from "../actions/dateSelectionAction";
+import { selectDate, addBooking } from "../actions/dateSelectionAction";
 import { getDate } from "../reducers/dateReducer";
 import { getAddress } from "../reducers/addressReducer";
 
@@ -68,6 +68,7 @@ class DateReservationPage extends Component {
             address: JSON.parse(localStorage.address).description
         }
         console.log("booking",booking);
+        //this.props.addBooking(booking);
     }
     
      
@@ -112,7 +113,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    selectDate: selectDate
+    selectDate: selectDate,
+    addBooking: addBooking
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateReservationPage);

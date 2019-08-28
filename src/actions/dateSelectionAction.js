@@ -20,12 +20,15 @@ export const addBooking = (booking) => {
         method: 'POST',
         body: JSON.stringify(booking),
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Accept": "application/json"
         }
     })
-    .then(err => console.log('error',err))
-    .then(res => res.json())
-    .then(booking => {
-        return booking;
+    .then(res => {
+        console.log("response",res)
+        return res.json();
+    })
+    .catch(err => {
+        console.log('error',err);
     })
 };
