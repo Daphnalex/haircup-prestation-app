@@ -6,7 +6,8 @@ const moment = require('moment');
 import {connect} from "react-redux";
 import { bindActionCreators } from 'redux';
 
-import { selectDate, addBooking } from "../actions/dateSelectionAction";
+import { selectDate } from "../actions/dateSelectionAction";
+import {addBooking} from "../actions/postBookingAction";
 import { getDate } from "../reducers/dateReducer";
 import { getAddress } from "../reducers/addressReducer";
 
@@ -64,11 +65,11 @@ class DateReservationPage extends Component {
         const prestations = localStorage.prestations.split(',');
         const booking = {
             prestations: prestations,
-            appointement: moment.parseZone(this.props.startDate).local().format(),
+            appointment: moment.parseZone(this.props.startDate).local().format(),
             address: JSON.parse(localStorage.address).description
         }
         console.log("booking",booking);
-        //this.props.addBooking(booking);
+        this.props.addBooking(booking);
     }
     
      
