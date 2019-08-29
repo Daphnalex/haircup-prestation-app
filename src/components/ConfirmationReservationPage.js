@@ -8,7 +8,7 @@ export default class ConfirmationReservationPage extends Component {
                 Votre réservation a bien été prise en compte.
                 <br/>
                 Merci de votre visite
-                <div>
+                <div className="reservationButton">
                     <ButtonIcon icon="" title="Nouvelle réservation" action={() => window.location.replace("/")}/>
                 </div>
             </div>

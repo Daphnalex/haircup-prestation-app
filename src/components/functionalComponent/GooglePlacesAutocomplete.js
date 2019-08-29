@@ -5,7 +5,7 @@ const GooglePlacesAutocompleteComponent = (props) => {
     return (
         <div>
             <GooglePlacesAutocomplete
-                placeholder={props.address.description !== "" ? props.address.description : "Indiquer l'adresse"}
+                placeholder={props.address !== null ? props.address.description : "Indiquer l'adresse"}
                 autocompletionRequest={{
                     componentRestrictions: {
                         country: ['fr'],

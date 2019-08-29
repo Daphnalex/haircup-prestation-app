@@ -37,20 +37,20 @@ class AddressReservationPage extends Component {
                     <GooglePlacesAutocompleteComponent id="googlePlace" address={this.props.address} addAddress={this.props.addAddress}/>
                     <div className="form-group">
                         <label htmlFor="inputNumber">Numéro</label>
-                        <input type="text" className="form-control" id="inputNumber" disabled={true} placeholder={this.props.address !== "" ? this.props.address.terms[0].value : ""}/>
+                        <input type="text" className="form-control" id="inputNumber" disabled={true} placeholder={this.props.address !== null ? this.props.address.terms[0].value : ""}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="inputStreet">Rue</label>
-                        <input type="text" className="form-control" id="inputStreet" disabled={true} placeholder={this.props.address !== "" ? this.props.address.terms[1].value : ""}/>
+                        <input type="text" className="form-control" id="inputStreet" disabled={true} placeholder={this.props.address !== null ? this.props.address.terms[1].value : ""}/>
                     </div>
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="inputCity">Ville</label>
-                            <input type="text" className="form-control" id="inputCity" disabled={true} placeholder={this.props.address !== "" ? this.props.address.terms[2].value : ""}/>
+                            <input type="text" className="form-control" id="inputCity" disabled={true} placeholder={this.props.address !== null ? this.props.address.terms[2].value : ""}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputState">Pays</label>
-                            <input type="text" className="form-control" id="inputState" disabled={true} placeholder={this.props.address !== "" ? this.props.address.terms[3].value : ""}/>
+                            <input type="text" className="form-control" id="inputState" disabled={true} placeholder={this.props.address !== null ? this.props.address.terms[3].value : ""}/>
                         </div>
                     </div>
                     {(this.props.address !== "" &&

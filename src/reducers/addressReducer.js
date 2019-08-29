@@ -5,7 +5,7 @@ if (!localStorage.address){
 };
 
 const initialState = {
-    address : ""
+    address : null
 }
 
 if (localStorage.address !== ""){

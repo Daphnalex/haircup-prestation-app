@@ -39,14 +39,16 @@ export const addBooking = (booking) => {
             }
         })
         .then(res => {
-            if (!res.ok){
+            if (res.status === 200){
+                localStorage.address = "";
+                localStorage.articles = [];
+                localStorage.prestations = [];
+                window.location.replace('/confirmation-reservation');
+                return res.json();
+            } else {
                 console.log('error 404');
             }
-            localStorage.address = "";
-            localStorage.articles = [];
-            localStorage.prestations = [];
-            window.location.replace('/confirmation-reservation');
-            return res.json();
+            
         })
         .then(booking => {
             dispatch(addBookingSuccess(booking));

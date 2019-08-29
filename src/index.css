@@ -103,13 +103,13 @@ div.thumbnail{
   position:relative;
   height: 260px;
 }
-p.reservationButton{
+.reservationButton{
   position: absolute;
   bottom: 0;
   display: block;
   padding-left: 30%;
 }
-p.reservationButton button{
+.reservationButton button{
   font-size: 16px;
 }
 
