@@ -88,6 +88,10 @@ h5 {
   font-style: italic;
 }
 
+button {
+  margin-top: 20px;
+}
+
 /*--------- LINES ------------*/
 hr {
   border: 1px solid #f1f0f1;
