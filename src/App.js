@@ -45,6 +45,7 @@ class App extends Component {
             <Route path="/date-reservation" component={DateReservationPage} />
             <Route path="/confirmation-reservation" component={ConfirmationReservationPage} />
             {this.redirectPage(url)}
+            <Route render={() => <Redirect to="/" />} />
           </div>
         </div>
       </Router>
