@@ -20,7 +20,7 @@ class AdressReservationPage extends Component {
     }
 
     saveAdress = () => {
-        //localStorage.setItem('address',JSON.stringify(this.props.address));
+        localStorage.address = JSON.stringify(this.props.address);
         window.location.replace('/date-reservation');
     }
     
