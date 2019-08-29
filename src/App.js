@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Header from './components/functionalComponent/Header';
-import PrestationListPage from './components/PrestationListPage';
-import AddressReservationPage from "./components/AddressReservationPage";
-import DateReservationPage from "./components/DateReservationPage";
-import ConfirmationReservationPage from "./components/ConfirmationReservationPage";
+import PrestationListPage from './containers/PrestationListPage';
+import AddressReservationPage from "./containers/AddressReservationPage";
+import DateReservationPage from "./containers/DateReservationPage";
+import ConfirmationReservationPage from "./containers/ConfirmationReservationPage";
 
 import logo from './logo_wecasa.png';
 

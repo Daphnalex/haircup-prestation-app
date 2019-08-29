@@ -12,8 +12,8 @@ import {addBooking} from "../actions/bookingAction";
 import { getDate } from "../reducers/dateReducer";
 import { getAddress } from "../reducers/addressReducer";
 
-import BreadCrumb from './functionalComponent/BreadCrumbs';
-import ButtonIcon from "./functionalComponent/ButtonIcon";
+import BreadCrumb from '../components/functionalComponent/BreadCrumbs';
+import ButtonIcon from "../components/functionalComponent/ButtonIcon";
 
 import DatePicker, { registerLocale }  from "react-datepicker"; 
 import "react-datepicker/dist/react-datepicker.css";

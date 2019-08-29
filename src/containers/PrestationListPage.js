@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import CategorySection from "./CategorySection";
-import ShoppingBasket from "./ShoppingBasket";
-import BreadCrumb from "./functionalComponent/BreadCrumbs";
-
 import {connect} from "react-redux";
 import { bindActionCreators } from 'redux';
+
+import CategorySection from "../components/CategorySection";
+import ShoppingBasket from "../components/ShoppingBasket";
+import BreadCrumb from "../components/functionalComponent/BreadCrumbs";
 
 import {fetchPrestations} from "../actions/prestationsAction";
 import {addArticle, deleteArticle, deleteReferenceArticle} from "../actions/shoppingAction";

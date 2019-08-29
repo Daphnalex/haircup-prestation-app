@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 
-import GooglePlacesAutocompleteComponent from './functionalComponent/GooglePlacesAutocomplete';
+import GooglePlacesAutocompleteComponent from '../components/functionalComponent/GooglePlacesAutocomplete';
 
-import BreadCrumb from "./functionalComponent/BreadCrumbs";
-import ButtonIcon from "./functionalComponent/ButtonIcon";
+import BreadCrumb from "../components/functionalComponent/BreadCrumbs";
+import ButtonIcon from "../components/functionalComponent/ButtonIcon";
 
 
 import {addAddress} from "../actions/addressAction";
