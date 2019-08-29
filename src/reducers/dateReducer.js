@@ -1,4 +1,4 @@
-import {SELECT_DATE} from "../actions/dateSelectionAction";
+import {ADD_DATE} from "../actions/dateAction";
 
 const initialState = {
     startDate: null,
@@ -7,7 +7,7 @@ const initialState = {
 
 export const dateReducer = (state = initialState, action) => {
     switch(action.type) {
-        case SELECT_DATE:
+        case ADD_DATE:
             return {
                 startDate: action.payload
             };

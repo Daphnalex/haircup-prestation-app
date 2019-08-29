@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 
@@ -9,12 +10,12 @@ import BreadCrumb from "./functionalComponent/BreadCrumbs";
 import ButtonIcon from "./functionalComponent/ButtonIcon";
 
 
-import { selectAddress } from "../actions/addressSelectionAction";
+import {addAddress} from "../actions/addressAction";
 import { getAddress } from "../reducers/addressReducer";
 
-class AdressReservationPage extends Component {
+class AddressReservationPage extends Component {
 
-    saveAdress = () => {
+    saveAddress = () => {
         localStorage.address = JSON.stringify(this.props.address);
         window.location.replace('/date-reservation');
     }
@@ -22,7 +23,7 @@ class AdressReservationPage extends Component {
     render() {
         return (
             <div>
-                <BreadCrumb page={"AdressReservationPage"} />
+                <BreadCrumb page={"AddressReservationPage"} />
                 <form>
                     <div className="form-row">
                         <label htmlFor="name">Nom</label>
@@ -53,7 +54,7 @@ class AdressReservationPage extends Component {
                         </div>
                     </div>
                     {(this.props.address !== "" &&
-                        <ButtonIcon action={() => this.saveAdress()} title="Réserver votre date" icon=""/>
+                        <ButtonIcon action={() => this.saveAddress()} title="Réserver votre date" icon=""/>
                     )}
                 </form>
             </div>
@@ -68,7 +69,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    selectAddress: selectAddress
+    addAddress: addAddress
 }, dispatch) ;
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdressReservationPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddressReservationPage);

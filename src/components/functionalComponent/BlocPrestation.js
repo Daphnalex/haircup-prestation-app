@@ -9,7 +9,7 @@ const BlocPrestation = (props) => {
                 <form className="caption">
                     <h4>{props.prestation.title}</h4>
                     <p><span className="bold">Durée:</span> {props.prestation.duration} min</p>
-                    <p><span className="bold">Prix:</span> {props.showViewPrice(props.prestation.price/100)} €</p>
+                    <p><span className="bold">Prix:</span> {props.transformPrice(props.prestation.price/100)} €</p>
                     <p className="reservationButton">
                         <ButtonIcon action={()=>props.addArticle(props.prestation)} title="Réserver" icon="glyphicon-shopping-cart"/>
                     </p>

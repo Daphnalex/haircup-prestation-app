@@ -6,8 +6,8 @@ const moment = require('moment');
 import {connect} from "react-redux";
 import { bindActionCreators } from 'redux';
 
-import { selectDate } from "../actions/dateSelectionAction";
-import {addBooking} from "../actions/postBookingAction";
+import { addDate } from "../actions/dateAction";
+import {addBooking} from "../actions/bookingAction";
 import { getDate } from "../reducers/dateReducer";
 import { getAddress } from "../reducers/addressReducer";
 
@@ -50,7 +50,7 @@ class DateReservationPage extends Component {
     }
 
     handleChange = (date) => {
-        this.props.selectDate(date);
+        this.props.addDate(date);
     }
 
     isWeekday = date => {
@@ -109,7 +109,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    selectDate: selectDate,
+    addDate: addDate,
     addBooking: addBooking
 }, dispatch);
 

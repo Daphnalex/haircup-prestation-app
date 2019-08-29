@@ -1,30 +1,30 @@
-export const FETCH_PRESTATIONS_PENDING = "FETCH_PRESTATIONS_PENDING";
-export const FETCH_PRESTATIONS_SUCCESS = "FETCH_PRESTATIONS_SUCCESS";
-export const FETCH_PRESTATIONS_ERROR = "FETCH_PRESTATIONS_ERROR";
+export const GET_PRESTATIONS_PENDING = "GET_PRESTATIONS_PENDING";
+export const GET_PRESTATIONS_SUCCESS = "GET_PRESTATIONS_SUCCESS";
+export const GET_PRESTATIONS_ERROR = "GET_PRESTATIONS_ERROR";
 
-export const fetchPrestationsPending = () => {
+export const getPrestationsPending = () => {
     return {
-        type: FETCH_PRESTATIONS_PENDING
+        type: GET_PRESTATIONS_PENDING
     }
 }
 
-export const fetchPrestationsSuccess = (prestations) => {
+export const getPrestationsSuccess = (prestations) => {
     return {
-        type: FETCH_PRESTATIONS_SUCCESS,
+        type: GET_PRESTATIONS_SUCCESS,
         payload: prestations
     }
 }
 
-export const fetchPrestationsError = (error) => {
+export const getPrestationsError = (error) => {
     return {
-        type: FETCH_PRESTATIONS_ERROR,
+        type: GET_PRESTATIONS_ERROR,
         error: error
     }
 }
 
 export const fetchPrestations = () => {
     return dispatch => {
-        dispatch(fetchPrestationsPending());
+        dispatch(getPrestationsPending());
         fetch('https://www.wecasa.fr/api/techtest/universe')
           .then(res => {
             if (!res.ok){
@@ -33,10 +33,10 @@ export const fetchPrestations = () => {
             return res.json();
           })
           .then(prestations => {
-            dispatch(fetchPrestationsSuccess(prestations));
+            dispatch(getPrestationsSuccess(prestations));
           })
           .catch(error => {
-            dispatch(fetchPrestationsError(error));
+            dispatch(getPrestationsError(error));
           });
     }
 };

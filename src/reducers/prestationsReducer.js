@@ -1,4 +1,4 @@
-import {FETCH_PRESTATIONS_PENDING, FETCH_PRESTATIONS_SUCCESS, FETCH_PRESTATIONS_ERROR} from "../actions/prestationsAction";
+import {GET_PRESTATIONS_PENDING, GET_PRESTATIONS_SUCCESS, GET_PRESTATIONS_ERROR} from "../actions/prestationsAction";
 
 const initialState = {
     pending: false,
@@ -8,18 +8,18 @@ const initialState = {
 
 export const prestationsReducer = (state = initialState, action) => {
     switch(action.type){
-        case FETCH_PRESTATIONS_PENDING:
+        case GET_PRESTATIONS_PENDING:
             return {
                 ...state,
                 pending: true
             }
-        case FETCH_PRESTATIONS_SUCCESS:
+        case GET_PRESTATIONS_SUCCESS:
             return {
                 ...state,
                 prestations: action.payload,
                 pending: false
             }
-        case FETCH_PRESTATIONS_ERROR:
+        case GET_PRESTATIONS_ERROR:
             return {
                 ...state,
                 error: action.error

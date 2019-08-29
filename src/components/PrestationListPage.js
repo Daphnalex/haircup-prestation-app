@@ -26,7 +26,7 @@ class PrestationListPage extends Component {
     }
 
     //transform decimal price - 5.5€ -> 5,50€
-    showViewPrice = (price) => {
+    transformPrice = (price) => {
         return price.toFixed(2).toString().replace('.',',');
     }
 
@@ -49,7 +49,7 @@ class PrestationListPage extends Component {
                         this.props.prestations.categories.map((element) => (
                             <div key={element.reference}>
                                 <hr/>
-                                <CategorySection prestations={element} articles={this.props.articles} addArticle={this.props.addArticle} showViewPrice={this.showViewPrice} showShopBasket={this.showShopBasket}/>
+                                <CategorySection prestations={element} articles={this.props.articles} addArticle={this.props.addArticle} transformPrice={this.transformPrice} showShopBasket={this.showShopBasket}/>
                             </div>
                         ))
                     }
@@ -60,7 +60,7 @@ class PrestationListPage extends Component {
                     <div className="shop row">
                         <div className="col-xs-offset-10 col-xs-2"> <span onClick={()=>this.showShopBasket(false)} className="glyphicon glyphicon-remove"></span></div>
                         <h1>Panier</h1> 
-                        <ShoppingBasket showViewPrice={this.showViewPrice} addArticle={this.props.addArticle} deleteArticle={this.props.deleteArticle} deleteReferenceArticle={this.props.deleteReferenceArticle}/>
+                        <ShoppingBasket transformPrice={this.transformPrice} addArticle={this.props.addArticle} deleteArticle={this.props.deleteArticle} deleteReferenceArticle={this.props.deleteReferenceArticle}/>
                     </div>
                   :
                   <div className="shopHidden" onClick={()=>this.showShopBasket(true)}>

@@ -8,7 +8,7 @@ import ButtonIcon from "./functionalComponent/ButtonIcon";
 
 class ShoppingBasket extends Component {
 
-    tronc(article){
+    truncateTitle(article){
         if(article.length>25){
             return article.slice(0,25)+"...";
         } else {
@@ -32,7 +32,7 @@ class ShoppingBasket extends Component {
             prestations = [...prestations, article.reference];
         });
         localStorage.setItem("prestations", prestations);
-        window.location.replace('/adress-reservation');
+        window.location.replace('/address-reservation');
     }
 
     render() {
@@ -54,10 +54,10 @@ class ShoppingBasket extends Component {
                         {this.props.articles.map((article,i)=>
                             <tr key={i}>
                                 <td>
-                                    <span className="titleArticle">{this.tronc(article.title)}</span> x  <input className="quantityArticle" type="number" value={article.quantity} onChange={(event) => this.handleChangeQuantity(event, article)} />
+                                    <span className="titleArticle">{this.truncateTitle(article.title)}</span> x  <input className="quantityArticle" type="number" value={article.quantity} onChange={(event) => this.handleChangeQuantity(event, article)} />
                                 </td>
                                 <td>
-                                    {this.props.showViewPrice((article.price*article.quantity)/100)}
+                                    {this.props.transformPrice((article.price*article.quantity)/100)}
                                 </td>
                                 <td>
                                     <div onClick={()=>this.props.deleteReferenceArticle(article)}><span className="glyphicon glyphicon-trash"></span></div>
@@ -68,7 +68,7 @@ class ShoppingBasket extends Component {
                         <tfoot>
                             <tr>
                                 <th scope="row" colSpan="3" className="totalShop">
-                                    <span className="bold uppercase space">Total :</span> {this.props.showViewPrice(this.props.total)} €
+                                    <span className="bold uppercase space">Total :</span> {this.props.transformPrice(this.props.total)} €
                                 </th>
                             </tr>
                         </tfoot>

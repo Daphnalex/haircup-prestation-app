@@ -1,4 +1,4 @@
-import { ADD_BOOKING_ERROR, ADD_BOOKING_PENDING, ADD_BOOKING_SUCCESS } from "../actions/postBookingAction";
+import { ADD_BOOKING_ERROR, ADD_BOOKING_PENDING, ADD_BOOKING_SUCCESS } from "../actions/bookingAction";
 
 const initialState = {
     pending: false,

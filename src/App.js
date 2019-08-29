@@ -3,7 +3,7 @@ import './App.css';
 
 import Header from './components/functionalComponent/Header';
 import PrestationListPage from './components/PrestationListPage';
-import AdressReservationPage from "./components/AdressReservationPage";
+import AddressReservationPage from "./components/AddressReservationPage";
 import DateReservationPage from "./components/DateReservationPage";
 import ConfirmationReservationPage from "./components/ConfirmationReservationPage";
 
@@ -16,7 +16,7 @@ class App extends Component {
   redirectPage = (url) => {
     switch(url){
       
-      case '/adress-reservation':
+      case '/address-reservation':
         if (localStorage.articles.split('').length === 0){
           return <Redirect to="/" />;
         }
@@ -25,7 +25,7 @@ class App extends Component {
         if (localStorage.articles.split('').length === 0){
           return <Redirect to="/" />;
         } else if (localStorage.address === ""){
-          return <Redirect to='/adress-reservation' />;
+          return <Redirect to='/address-reservation' />;
         }
         break;
       default:
@@ -41,7 +41,7 @@ class App extends Component {
           <Header logosrc={logo}/>
           <div className="container">
             <Route exact path="/" component={PrestationListPage}/>
-            <Route path="/adress-reservation" component={AdressReservationPage} />
+            <Route path="/address-reservation" component={AddressReservationPage} />
             <Route path="/date-reservation" component={DateReservationPage} />
             <Route path="/confirmation-reservation" component={ConfirmationReservationPage} />
             {this.redirectPage(url)}

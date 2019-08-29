@@ -1,4 +1,4 @@
-import { SELECT_ADDRESS } from "../actions/addressSelectionAction";
+import { ADD_ADDRESS } from "../actions/addressAction";
 
 if (!localStorage.address){
     localStorage.setItem('address',"");
@@ -14,7 +14,7 @@ if (localStorage.address !== ""){
 
 export const addressReducer = ( state = initialState, action) => {
     switch(action.type){
-        case SELECT_ADDRESS:
+        case ADD_ADDRESS:
             return {
                 ...state,
                 address: action.payload
