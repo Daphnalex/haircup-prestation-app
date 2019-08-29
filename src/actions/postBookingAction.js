@@ -42,7 +42,6 @@ export const addBooking = (booking) => {
             if (!res.ok){
                 console.log('error 404');
             }
-            console.log('res',res);
             localStorage.address = "";
             localStorage.articles = [];
             localStorage.prestations = [];
@@ -50,8 +49,6 @@ export const addBooking = (booking) => {
             return res.json();
         })
         .then(booking => {
-            console.log("booking",booking);
-            
             dispatch(addBookingSuccess(booking));
         })
         .catch(error => {

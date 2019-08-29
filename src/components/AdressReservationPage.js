@@ -13,11 +13,6 @@ import { selectAddress } from "../actions/addressSelectionAction";
 import { getAddress } from "../reducers/addressReducer";
 
 class AdressReservationPage extends Component {
-    
-    constructor(props){
-        super(props);
-        console.log('address page',localStorage);
-    }
 
     saveAdress = () => {
         localStorage.address = JSON.stringify(this.props.address);
@@ -25,7 +20,6 @@ class AdressReservationPage extends Component {
     }
     
     render() {
-        console.log("new address", this.props.address);
         return (
             <div>
                 <BreadCrumb page={"AdressReservationPage"} />

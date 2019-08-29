@@ -11,7 +11,6 @@ const initalState = {
 
 if(localStorage.articles !== [] && localStorage.articles !== ""){
     initalState.articles = JSON.parse(localStorage.articles);
-    console.log("initialState articles", initalState.articles);
 }
 
 export const shoppingReducer = (state = initalState, action) => {
@@ -192,7 +191,6 @@ export const getTotalShop = (state) => {
             total = total + (article.price*article.quantity);
         });
     }
-    console.log("total du panier",total);
     //transform cts to euro
     return total/100;
 }
@@ -204,6 +202,5 @@ export const getNumberArticle = (state) => {
             totalArticles = totalArticles + article.quantity;
         });
     } 
-    //console.log("totalArticles",totalArticles);
     return totalArticles;
 }

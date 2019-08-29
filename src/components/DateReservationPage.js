@@ -28,19 +28,16 @@ class DateReservationPage extends Component {
             excludeTimes: []
         };
         this.handleChange = this.handleChange.bind(this);
-        console.log('constructor',localStorage);
     }
 
     componentDidMount = () => {
         let dateSelected = new Date();
-        console.log(new Date());
         let newExcludeTimes = this.state.excludeTimes;
         let hours = [0,1,2,3,4,5,6,7,8,20,21,22,23];
         let minutes = [0,15,30,45];
 
         hours.map((hour) => {
             minutes.map((minute) => {
-                console.log("heure d'été",(new Date(2010,2,30)).getTimezoneOffset());
                 newExcludeTimes = [...newExcludeTimes, new Date(dateSelected.setHours(hour)).setMinutes(minute)];
                 return;
             })
@@ -69,7 +66,6 @@ class DateReservationPage extends Component {
             appointment: moment.parseZone(this.props.startDate).local().format(),
             address: JSON.parse(localStorage.address).description
         }
-        console.log("booking",booking);
         this.props.addBooking(booking);
     }
     

@@ -2,7 +2,6 @@ import React from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 const GooglePlacesAutocompleteComponent = (props) => {
-    console.log('props autocompletion',props.address.description);
     return (
         <div>
             <GooglePlacesAutocomplete

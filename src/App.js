@@ -14,23 +14,17 @@ import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 class App extends Component {
 
   redirectPage = (url) => {
-    console.log('type of',typeof(url));
-    console.log("localStorage",localStorage)
     switch(url){
       
       case '/adress-reservation':
-        console.log('url dans switch',localStorage.articles.split(''))
         if (localStorage.articles.split('').length === 0){
-          console.log('ici');
           return <Redirect to="/" />;
         }
         break;
       case '/date-reservation':
         if (localStorage.articles.split('').length === 0){
-          console.log('vient ici')
           return <Redirect to="/" />;
         } else if (localStorage.address === ""){
-          console.log('plutôt là')
           return <Redirect to='/adress-reservation' />;
         }
         break;
@@ -41,7 +35,6 @@ class App extends Component {
 
   render(){
     let url = window.location.pathname;
-    console.log('url',url);
     return (
       <Router>
         <div className="App">

@@ -31,7 +31,6 @@ class PrestationListPage extends Component {
     }
 
     showShopBasket = (bool) => {
-        console.log("montre le panier ?",bool);
         this.setState({
             showBasket: bool
         });

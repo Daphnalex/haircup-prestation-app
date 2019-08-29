@@ -24,7 +24,6 @@ const deleteArticleSuccess = (article) => {
 }
 
 export const deleteArticle = (article) => {
-    console.log('action delete article');
     return dispatch => {
         dispatch(deleteArticleSuccess(article));
     }
@@ -38,7 +37,6 @@ const deleteReferenceArticleSuccess = (reference) => {
 }
 
 export const deleteReferenceArticle = (article) => {
-    console.log('dans action',article);
     return dispatch => {
         dispatch(deleteReferenceArticleSuccess(article));
     }

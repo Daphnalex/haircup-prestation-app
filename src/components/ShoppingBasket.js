@@ -17,12 +17,9 @@ class ShoppingBasket extends Component {
     }
 
     handleChangeQuantity = (event, article) => {
-        console.log('event.target.value',event.target.value);
         if (article.quantity < event.target.value){
-            console.log('augmente la quantité de l article');
             this.props.addArticle(article);
         } else {
-            console.log('on enlève un article');
             this.props.deleteArticle(article);
         }
 
@@ -30,7 +27,6 @@ class ShoppingBasket extends Component {
 
     saveBasketShop = () => {
         let prestations = [];
-        console.log('articles',this.props.articles);
         localStorage.setItem('articles',JSON.stringify(this.props.articles));
         this.props.articles.map((article) => {
             prestations = [...prestations, article.reference];
@@ -87,8 +83,6 @@ class ShoppingBasket extends Component {
 }
 
 const mapStateToProps = (state) => {
-
-    console.log('state.shoppingReduce in basket',state.shoppingReducer)
     return {
         articles: getArticles(state.shoppingReducer),
         total: getTotalShop(state.shoppingReducer)
