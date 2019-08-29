@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import CategorySection from "./CategorySection";
 import ShoppingBasket from "./ShoppingBasket";
 import BreadCrumb from "./functionalComponent/BreadCrumbs";
@@ -40,7 +42,7 @@ class PrestationListPage extends Component {
         return (
             <div>
                 <BreadCrumb page={"PrestationListPage"} />
-                {(this.props.pending || this.props.prestations.length === 0) ? <div>Loading...</div>
+                {(this.props.pending || this.props.prestations === null) ? <div>Loading...</div>
                 : 
                 <div>
                     <h1>Réservations</h1>
@@ -75,6 +77,8 @@ class PrestationListPage extends Component {
 };
 
 const mapStateToProps = (state) => {
+    console.log('state reducer',state.prestationsReducer.prestations);
+    console.log('state 2',state.shoppingReducer)
     return {
         pending: getPrestationsPending(state.prestationsReducer),
         prestations: getPrestations(state.prestationsReducer),
@@ -90,5 +94,12 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     deleteArticle: deleteArticle,
     deleteReferenceArticle: deleteReferenceArticle
     }, dispatch);
+
+PrestationListPage.propTypes = {
+    pending: PropTypes.bool,
+    prestations: PropTypes.object,
+    error: PropTypes.string,
+    totalArticles: PropTypes.number
+}
 
 export default connect(mapStateToProps,mapDispatchToProps)(PrestationListPage);

@@ -11,7 +11,7 @@ const GooglePlacesAutocompleteComponent = (props) => {
                         country: ['fr'],
                     }
                 }}
-                onSelect={(description) => props.selectAddress(description)}
+                onSelect={(description) => props.addAddress(description)}
             />
         </div>
     )

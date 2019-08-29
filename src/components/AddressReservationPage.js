@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
@@ -34,7 +34,7 @@ class AddressReservationPage extends Component {
                         <input type="text" className="form-control" id="firstname" placeholder="Indiquer votre prénom" />
                     </div>
                     <hr/>
-                    <GooglePlacesAutocompleteComponent id="googlePlace" address={this.props.address} selectAddress={this.props.selectAddress}/>
+                    <GooglePlacesAutocompleteComponent id="googlePlace" address={this.props.address} addAddress={this.props.addAddress}/>
                     <div className="form-group">
                         <label htmlFor="inputNumber">Numéro</label>
                         <input type="text" className="form-control" id="inputNumber" disabled={true} placeholder={this.props.address !== "" ? this.props.address.terms[0].value : ""}/>
@@ -72,5 +72,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     addAddress: addAddress
 }, dispatch) ;
 
+AddressReservationPage.propTypes = {
+    address: PropTypes.array
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddressReservationPage);

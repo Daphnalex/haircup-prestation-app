@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 
 import {connect} from "react-redux";
 
@@ -87,6 +88,11 @@ const mapStateToProps = (state) => {
         articles: getArticles(state.shoppingReducer),
         total: getTotalShop(state.shoppingReducer)
     }
+}
+
+ShoppingBasket.propTypes = {
+    articles: PropTypes.array,
+    total: PropTypes.number
 }
 
 export default connect(mapStateToProps)(ShoppingBasket);

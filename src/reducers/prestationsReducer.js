@@ -2,7 +2,7 @@ import {GET_PRESTATIONS_PENDING, GET_PRESTATIONS_SUCCESS, GET_PRESTATIONS_ERROR}
 
 const initialState = {
     pending: false,
-    prestations: [],
+    prestations: null,
     error: null
 }
 
@@ -14,6 +14,7 @@ export const prestationsReducer = (state = initialState, action) => {
                 pending: true
             }
         case GET_PRESTATIONS_SUCCESS:
+            console.log("payload prestations success",action.payload)
             return {
                 ...state,
                 prestations: action.payload,
@@ -30,6 +31,7 @@ export const prestationsReducer = (state = initialState, action) => {
 }
 
 export const getPrestations = (state) => {
+    console.log("reducer prestations",state.prestations);
     return state.prestations
 };
 

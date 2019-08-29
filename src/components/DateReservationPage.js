@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from 'prop-types';
 
 /* eslint-disable import/first */
 const moment = require('moment');
@@ -112,5 +113,9 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     addDate: addDate,
     addBooking: addBooking
 }, dispatch);
+
+DateReservationPage.propTypes = {
+    startDate: PropTypes.object
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateReservationPage);
