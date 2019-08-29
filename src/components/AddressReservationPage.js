@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch) ;
 
 AddressReservationPage.propTypes = {
-    address: PropTypes.array
+    address: PropTypes.object
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddressReservationPage);
