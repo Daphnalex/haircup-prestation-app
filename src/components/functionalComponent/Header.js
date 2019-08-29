@@ -3,9 +3,9 @@ import React from "react";
 const Header = (props) => {
     return(
         <nav className="navbar">
-            <a className="navbar-brand" href="#">
-                <img src={props.logosrc} height="30" alt=""/>
-            </a>
+            <div className="navbar-brand">
+                <img src={props.logosrc} height="30" alt="" onClick={()=> window.location.replace('/')}/>
+            </div>
         </nav>
     )
 };

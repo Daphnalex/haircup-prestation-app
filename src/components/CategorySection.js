@@ -3,10 +3,7 @@ import React, { Component } from 'react';
 import BlocPrestation from "./functionalComponent/BlocPrestation";
 
 export default class CategorySection extends Component {
-    constructor(props){
-        super(props);
-    }
-
+    
     addArticle = (article) => {
         this.props.addArticle(article);
         this.props.showShopBasket(true);

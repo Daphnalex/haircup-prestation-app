@@ -43,7 +43,10 @@ export const addBooking = (booking) => {
                 console.log('error 404');
             }
             console.log('res',res);
-            localStorage.statusResponse = res.status;
+            localStorage.address = "";
+            localStorage.articles = [];
+            localStorage.prestations = [];
+            window.location.replace('/confirmation-reservation');
             return res.json();
         })
         .then(booking => {

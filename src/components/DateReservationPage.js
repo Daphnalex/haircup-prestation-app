@@ -42,7 +42,9 @@ class DateReservationPage extends Component {
             minutes.map((minute) => {
                 console.log("heure d'été",(new Date(2010,2,30)).getTimezoneOffset());
                 newExcludeTimes = [...newExcludeTimes, new Date(dateSelected.setHours(hour)).setMinutes(minute)];
+                return;
             })
+            return;
         });
         this.setState({
             excludeTimes: newExcludeTimes
@@ -69,21 +71,11 @@ class DateReservationPage extends Component {
         }
         console.log("booking",booking);
         this.props.addBooking(booking);
-        console.log(typeof(localStorage.statusResponse));
-        if(localStorage.statusResponse === "200"){
-            localStorage.address = "";
-            localStorage.articles = [];
-            localStorage.statusResponse = "0";
-            console.log("on est ici on va à la page de confirmation")
-            window.location.replace('/confirmation-reservation');
-        }
     }
     
      
     render(){
         
-        
-        const date = Date.now();
         return (
             <div>
                 <BreadCrumb page={"DateReservationPage"} />

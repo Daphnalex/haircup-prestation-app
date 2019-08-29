@@ -8,10 +8,6 @@ import ButtonIcon from "./functionalComponent/ButtonIcon";
 
 class ShoppingBasket extends Component {
 
-    constructor(props){
-        super(props);
-    }
-
     tronc(article){
         if(article.length>25){
             return article.slice(0,25)+"...";
@@ -38,7 +34,7 @@ class ShoppingBasket extends Component {
         localStorage.setItem('articles',JSON.stringify(this.props.articles));
         this.props.articles.map((article) => {
             prestations = [...prestations, article.reference];
-        })
+        });
         localStorage.setItem("prestations", prestations);
         window.location.replace('/adress-reservation');
     }

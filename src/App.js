@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { connect } from "react-redux";
-
 import Header from './components/functionalComponent/Header';
 import PrestationListPage from './components/PrestationListPage';
 import AdressReservationPage from "./components/AdressReservationPage";
@@ -11,13 +9,9 @@ import ConfirmationReservationPage from "./components/ConfirmationReservationPag
 
 import logo from './logo_wecasa.png';
 
-import {BrowserRouter as Router, Route, Link, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 
 class App extends Component {
-
-  constructor(props){
-    super(props);
-  }
 
   redirectPage = (url) => {
     console.log('type of',typeof(url));
@@ -30,6 +24,7 @@ class App extends Component {
           console.log('ici');
           return <Redirect to="/" />;
         }
+        break;
       case '/date-reservation':
         if (localStorage.articles.split('').length === 0){
           console.log('vient ici')
@@ -38,6 +33,7 @@ class App extends Component {
           console.log('plutôt là')
           return <Redirect to='/adress-reservation' />;
         }
+        break;
       default:
         return;
     }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 const GooglePlacesAutocompleteComponent = (props) => {
