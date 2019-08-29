@@ -61,7 +61,6 @@ class DateReservationPage extends Component {
     }
 
     addBooking = () => {
-       //window.location.replace('/confirmation-reservation');
         const prestations = localStorage.prestations.split(',');
         const booking = {
             prestations: prestations,
@@ -70,6 +69,14 @@ class DateReservationPage extends Component {
         }
         console.log("booking",booking);
         this.props.addBooking(booking);
+        console.log(typeof(localStorage.statusResponse));
+        if(localStorage.statusResponse === "200"){
+            localStorage.address = "";
+            localStorage.articles = [];
+            localStorage.statusResponse = "0";
+            console.log("on est ici on va à la page de confirmation")
+            window.location.replace('/confirmation-reservation');
+        }
     }
     
      
