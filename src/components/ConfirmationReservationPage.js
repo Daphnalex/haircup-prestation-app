@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import ButtonIcon from "../components/functionalComponent/ButtonIcon";
 
 export default class ConfirmationReservationPage extends Component {
     render() {
@@ -7,6 +8,9 @@ export default class ConfirmationReservationPage extends Component {
                 Votre réservation a bien été prise en compte.
                 <br/>
                 Merci de votre visite
+                <div>
+                    <ButtonIcon icon="" title="Nouvelle réservation" action={() => window.location.replace("/")}/>
+                </div>
             </div>
         )
     }
