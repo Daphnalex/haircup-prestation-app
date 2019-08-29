@@ -2,6 +2,10 @@ export const ADD_BOOKING_ERROR = "ADD_BOOKING_ERROR";
 export const ADD_BOOKING_PENDING = "ADD_BOOKING_PENDING";
 export const ADD_BOOKING_SUCCESS = "ADD_BOOKING_SUCCESS";
 
+if(!localStorage.statusResponse){
+    localStorage.setItem('statusResponse',"0");
+}
+
 export const addBookingPending = () => {
     return {
         type: ADD_BOOKING_PENDING
@@ -38,11 +42,13 @@ export const addBooking = (booking) => {
             if (!res.ok){
                 console.log('error 404');
             }
-            console.log('res',res)
+            console.log('res',res);
+            localStorage.statusResponse = res.status;
             return res.json();
         })
         .then(booking => {
             console.log("booking",booking);
+            
             dispatch(addBookingSuccess(booking));
         })
         .catch(error => {
