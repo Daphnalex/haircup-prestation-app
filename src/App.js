@@ -11,7 +11,7 @@ import ConfirmationReservationPage from "./components/ConfirmationReservationPag
 
 import logo from './logo_wecasa.png';
 
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Redirect} from "react-router-dom";
 
 class App extends Component {
 
@@ -19,7 +19,33 @@ class App extends Component {
     super(props);
   }
 
+  redirectPage = (url) => {
+    console.log('type of',typeof(url));
+    console.log("localStorage",localStorage)
+    switch(url){
+      
+      case '/adress-reservation':
+        console.log('url dans switch',localStorage.articles.split(''))
+        if (localStorage.articles.split('').length === 0){
+          console.log('ici');
+          return <Redirect to="/" />;
+        }
+      case '/date-reservation':
+        if (localStorage.articles.split('').length === 0){
+          console.log('vient ici')
+          return <Redirect to="/" />;
+        } else if (localStorage.address === ""){
+          console.log('plutôt là')
+          return <Redirect to='/adress-reservation' />;
+        }
+      default:
+        return;
+    }
+  }
+
   render(){
+    let url = window.location.pathname;
+    console.log('url',url);
     return (
       <Router>
         <div className="App">
@@ -29,6 +55,7 @@ class App extends Component {
             <Route path="/adress-reservation" component={AdressReservationPage} />
             <Route path="/date-reservation" component={DateReservationPage} />
             <Route path="/confirmation-reservation" component={ConfirmationReservationPage} />
+            {this.redirectPage(url)}
           </div>
         </div>
       </Router>
