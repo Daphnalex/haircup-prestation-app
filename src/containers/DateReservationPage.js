@@ -33,6 +33,7 @@ class DateReservationPage extends Component {
 
     componentDidMount = () => {
         let dateSelected = new Date();
+        //if consider the collaborators worked from 9h to 20h;
         let newExcludeTimes = this.state.excludeTimes;
         let hours = [0,1,2,3,4,5,6,7,8,20,21,22,23];
         let minutes = [0,15,30,45];
@@ -51,16 +52,18 @@ class DateReservationPage extends Component {
     }
 
     handleChange = (date) => {
+        //add date selection to reducer state
         this.props.addDate(date);
     }
 
     isWeekday = date => {
         const day = date.getDay();
-        //filter if not working sunday
+        //filter : if consider that collaborator not working sunday
         return day !== 0;
     }
 
     addBooking = () => {
+        // CALL API : POST the booking
         const prestations = localStorage.prestations.split(',');
         const booking = {
             prestations: prestations,

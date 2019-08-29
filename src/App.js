@@ -15,7 +15,6 @@ class App extends Component {
 
   redirectPage = (url) => {
     switch(url){
-      
       case '/address-reservation':
         if (localStorage.articles.split('').length === 0){
           return <Redirect to="/" />;
@@ -44,7 +43,9 @@ class App extends Component {
             <Route path="/address-reservation" component={AddressReservationPage} />
             <Route path="/date-reservation" component={DateReservationPage} />
             <Route path="/confirmation-reservation" component={ConfirmationReservationPage} />
+            {/*step data must be completed to go to the next step*/}
             {this.redirectPage(url)}
+            {/*if route not exist redirect to home page*/}
             <Route render={() => <Redirect to="/" />} />
           </div>
         </div>

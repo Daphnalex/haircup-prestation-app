@@ -4,6 +4,7 @@ import BlocPrestation from "./functionalComponent/BlocPrestation";
 
 export default class CategorySection extends Component {
 
+    //add article to reducer state
     addArticle = (article) => {
         this.props.addArticle(article);
         this.props.showShopBasket(true);

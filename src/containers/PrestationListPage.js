@@ -24,6 +24,7 @@ class PrestationListPage extends Component {
     }
 
     componentWillMount(){
+        //call API : get all prestations
         this.props.fetchPrestations();
     }
 
@@ -32,6 +33,7 @@ class PrestationListPage extends Component {
         return price.toFixed(2).toString().replace('.',',');
     }
 
+    //display of hide the basket shop bloc
     showShopBasket = (bool) => {
         this.setState({
             showBasket: bool
@@ -77,8 +79,6 @@ class PrestationListPage extends Component {
 };
 
 const mapStateToProps = (state) => {
-    console.log('state reducer',state.prestationsReducer.prestations);
-    console.log('state 2',state.shoppingReducer)
     return {
         pending: getPrestationsPending(state.prestationsReducer),
         prestations: getPrestations(state.prestationsReducer),
