@@ -6,6 +6,7 @@ import PrestationListPage from './containers/PrestationListPage';
 import AddressReservationPage from "./containers/AddressReservationPage";
 import DateReservationPage from "./containers/DateReservationPage";
 import ConfirmationReservationPage from "./containers/ConfirmationReservationPage";
+import PageNotFound from "./containers/PageNotFound";
 
 import logo from './logo_wecasa.png';
 
@@ -13,22 +14,35 @@ import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 
 class App extends Component {
 
-  redirectPage = (url) => {
+  constructor(props){
+    super(props);
+  }
+
+  getRouteCondition = (url) => {
+    let articles = JSON.parse(localStorage.articles);
     switch(url){
+      case '/':
+        return <Route path="/" component={PrestationListPage} />
       case '/address-reservation':
-        if (localStorage.articles.split('').length === 0){
+        if (articles.length === 0){
           return <Redirect to="/" />;
+        } else {
+          return <Route path={url} component={AddressReservationPage} />
         }
         break;
       case '/date-reservation':
-        if (localStorage.articles.split('').length === 0){
+        if (articles.length === 0){
           return <Redirect to="/" />;
         } else if (localStorage.address === ""){
           return <Redirect to='/address-reservation' />;
+        } else {
+          return <Route path={url} component={DateReservationPage} />
         }
         break;
+      case '/confirmation-reservation':
+        return <Route path={url} component={ConfirmationReservationPage} />
       default:
-        return;
+        return <Route path={url} component={PageNotFound} />;
     }
   }
 
@@ -39,15 +53,9 @@ class App extends Component {
         <div className="App">
           <Header logosrc={logo}/>
           <div className="container">
-            <Route exact path="/" component={PrestationListPage}/>
-            <Route path="/address-reservation" component={AddressReservationPage} />
-            <Route path="/date-reservation" component={DateReservationPage} />
-            <Route path="/confirmation-reservation" component={ConfirmationReservationPage} />
             {/*step data must be completed to go to the next step*/}
-            {this.redirectPage(url)}
-            {/*if route not exist redirect to home page*/}
-            <Route render={() => <Redirect to="/" />} />
-          </div>
+            {this.getRouteCondition(url)}
+            </div>
         </div>
       </Router>
     );
