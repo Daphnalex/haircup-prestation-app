@@ -15,7 +15,13 @@ import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 class App extends Component {
 
   getRouteCondition = (url) => {
-    let articles = JSON.parse(localStorage.articles);
+    let articles;
+    if(typeof(articles) === "string"){
+      articles = JSON.parse(localStorage.articles);
+    } else {
+      articles = localStorage.articles;
+    }
+    console.log('articles',articles);
     switch(url){
       case '/':
         return <Route path="/" component={PrestationListPage} />
