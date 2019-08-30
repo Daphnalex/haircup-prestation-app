@@ -14,10 +14,6 @@ import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 
 class App extends Component {
 
-  constructor(props){
-    super(props);
-  }
-
   getRouteCondition = (url) => {
     let articles = JSON.parse(localStorage.articles);
     switch(url){
@@ -29,7 +25,6 @@ class App extends Component {
         } else {
           return <Route path={url} component={AddressReservationPage} />
         }
-        break;
       case '/date-reservation':
         if (articles.length === 0){
           return <Redirect to="/" />;
@@ -38,7 +33,6 @@ class App extends Component {
         } else {
           return <Route path={url} component={DateReservationPage} />
         }
-        break;
       case '/confirmation-reservation':
         return <Route path={url} component={ConfirmationReservationPage} />
       default:
